@@ -61,6 +61,44 @@ export default function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-cream">
+      {/* Floating dashed proof tile — depth element, honest placeholder for
+          client work that'll land later. Hidden on mobile to keep the hero
+          composition clean. Anchored to the top-right of the section. */}
+      <motion.div
+        initial={{ opacity: 0, y: -8, rotate: -3 }}
+        animate={{ opacity: 1, y: 0, rotate: -3 }}
+        transition={{ delay: 0.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ rotate: 0, scale: 1.04 }}
+        className="hidden lg:flex absolute top-[88px] right-[5%] z-10 w-[220px] aspect-[5/3] rounded-chip border-2 border-dashed border-ink/40 bg-cream/60 backdrop-blur-sm p-4 flex-col justify-between"
+        aria-hidden="true"
+        style={{ transformOrigin: 'center' }}
+      >
+        <div className="flex items-center justify-between">
+          <span className="font-display font-bold text-[9px] uppercase tracking-[0.14em] text-ink-3">
+            ◆ NEXT CASE
+          </span>
+          <span className="font-display font-bold text-[9px] text-ink-3">
+            01/12
+          </span>
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <div className="font-display font-bold text-[11px] uppercase tracking-[0.1em] text-ink-2 mb-1">
+              Real client work
+            </div>
+            <div className="font-body text-[9.5px] text-ink-3 leading-snug">
+              lands here when<br />assets arrive
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="font-display font-bold text-[9px] uppercase tracking-[0.1em] text-primary">
+            SHIPPED
+          </span>
+          <span className="font-display text-[9px] text-ink-3">→</span>
+        </div>
+      </motion.div>
+
       <div
         className="mx-auto max-w-page px-6 lg:px-10 grid"
         style={{
