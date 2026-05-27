@@ -57,6 +57,18 @@ export default {
       maxWidth: {
         page: '1320px', // wider than v1 for editorial feel
       },
+      keyframes: {
+        marquee: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        // Slow, steady scroll. -50% because we duplicate the content row
+        // so the loop point is the midpoint of the doubled content.
+        // 90s is roughly half the speed of 48s — calm, readable, never frantic.
+        marquee: 'marquee 90s linear infinite',
+      },
     },
   },
   plugins: [],

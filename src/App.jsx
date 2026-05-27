@@ -1,3 +1,4 @@
+import Marquee from './components/Marquee.jsx'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -16,6 +17,7 @@ import WhoWereNotFor from './sections/11_WhoWereNotFor.jsx'
 export default function App() {
   return (
     <div className="min-h-screen bg-cream text-ink">
+      <Marquee />
       <Nav />
       <main>
         <Hero />

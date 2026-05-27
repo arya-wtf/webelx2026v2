@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 /**
  * v2 Hero — composed for a single viewport.
@@ -6,6 +7,8 @@ import { motion } from 'framer-motion'
  * Architecture:
  *   Top row    — eyebrow chip
  *   Middle row — massive headline (the visual anchor)
+ *                The final verb cycles: SHIP → LAUNCH → CONVERT → SCALE
+ *                via a vertical letter-flip every 2.6s.
  *   Bottom row — split: lede + CTAs on the left, meta column on the right
  *   Footer row — proof strip hairlined off the bottom
  *
@@ -14,6 +17,42 @@ import { motion } from 'framer-motion'
  * Headline upper-bound dropped from 168px → 128px so 3 lines clear
  * standard laptop viewports.
  */
+
+const VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.', 'SCALE.']
+
+function RotatingVerb() {
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setI((v) => (v + 1) % VERBS.length), 2600)
+    return () => clearInterval(t)
+  }, [])
+  // Container uses Framer's `layout` prop so it tweens its width
+  // automatically as the inner word changes length. The word itself
+  // flips vertically with AnimatePresence inside.
+  return (
+    <motion.span
+      layout
+      transition={{ layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+      className="relative inline-flex items-center justify-center bg-primary text-cream px-3 -mx-1 overflow-hidden align-baseline"
+      style={{ height: '1em', verticalAlign: 'baseline' }}
+    >
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={VERBS[i]}
+          layout="position"
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: '0%', opacity: 1 }}
+          exit={{ y: '-100%', opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block whitespace-nowrap"
+        >
+          {VERBS[i]}
+        </motion.span>
+      </AnimatePresence>
+    </motion.span>
+  )
+}
+
 export default function Hero() {
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -25,7 +64,7 @@ export default function Hero() {
       <div
         className="mx-auto max-w-page px-6 lg:px-10 grid"
         style={{
-          minHeight: 'calc(100vh - 64px)',
+          minHeight: 'calc(100vh - 64px - 32px)',
           gridTemplateRows: 'auto 1fr auto auto',
           rowGap: 'clamp(20px, 3vh, 36px)',
           paddingTop: 'clamp(20px, 4vh, 44px)',
@@ -61,10 +100,7 @@ export default function Hero() {
           <br />
           PRODUCTS THAT
           <br />
-          ACTUALLY{' '}
-          <span className="bg-primary text-cream px-3 -mx-1 inline-block">
-            SHIP.
-          </span>
+          ACTUALLY <RotatingVerb />
         </motion.h1>
 
         {/* ROW 3 — lede + CTAs (2-col on lg, stacked on small) */}

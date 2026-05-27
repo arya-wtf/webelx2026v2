@@ -12,6 +12,18 @@
   ::selection { background: #2853FF; color: #FFFBEA; }
 }
 
+/* Marquee animation defined globally so it survives Tailwind config edits
+   without needing a dev-server restart. */
+@keyframes marquee-scroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  animation: marquee-scroll 90s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
 @layer components {
   /* Bricolage with condensed width axis for that BORING display feel */
   .display {
