@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background-color: #FFFBEA;
+    color: #0F1C12;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #2853FF; color: #FFFBEA; }
+}
+
+@layer components {
+  /* Bricolage with condensed width axis for that BORING display feel */
+  .display {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700;
+    font-variation-settings: "wdth" 85;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+  }
+  .display-xl {
+    @apply display;
+    font-size: clamp(56px, 11vw, 168px);
+  }
+  .display-lg {
+    @apply display;
+    font-size: clamp(40px, 7vw, 100px);
+  }
+  .display-md {
+    @apply display;
+    font-size: clamp(28px, 4vw, 56px);
+  }
+
+  .eyebrow {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .body-lg {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .body-md {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* CTAs — BORING-style tight chip with Elux blue */
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 bg-primary text-cream rounded-chip;
+    padding: 10px 14px 10px 16px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+  .btn-primary:hover { background-color: #1E3FCC; transform: translateY(-1px); }
+
+  .btn-cream {
+    @apply inline-flex items-center gap-2.5 bg-cream text-ink rounded-chip;
+    padding: 10px 14px 10px 16px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid #0F1C12;
+    transition: transform 0.15s ease;
+  }
+  .btn-cream:hover { transform: translateY(-1px); }
+
+  .btn-ghost-ink {
+    @apply inline-flex items-center gap-2.5 rounded-chip;
+    padding: 10px 14px 10px 16px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #FFFBEA;
+    border: 1px solid #FFFBEA40;
+    transition: border-color 0.15s ease;
+  }
+  .btn-ghost-ink:hover { border-color: #FFFBEA; }
+}
