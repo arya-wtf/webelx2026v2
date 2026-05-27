@@ -229,7 +229,7 @@ homepagev2/
     │   ├── Nav.jsx
     │   └── Footer.jsx    ("DON'T BE BORING. BUILD WITH ELUX.")
     └── sections/
-        ├── 01_Hero.jsx                  ✅ composed + rotating verb + floating tile
+        ├── 01_Hero.jsx                  ✅ composed + rotating verb + GSAP entrance + live ledger
         ├── 02_TrustStrip.jsx            ✅ 4 verified platform badges
         ├── 03_PortfolioHighlight.jsx    🔴 asset-blocked
         ├── 04_HowAINativeSolvesIt.jsx   ✅ STITCHING TOOLS VS SHIPPING
@@ -241,3 +241,164 @@ homepagev2/
         ├── 10_Testimonials.jsx          🟡 quote cards + video placeholders
         └── 11_WhoWereNotFor.jsx         ✅ dark, we don't / we do
 ```
+
+---
+
+## Hero right-side alternates (not shipped)
+
+The hero's right-side band (~570px wide, sits beside the headline) currently holds the **live status ledger** (Option 1, shipped). Three alternates were considered and rejected for various reasons. Documenting them here so we don't have to re-think this if requirements change later.
+
+---
+
+### Option 2 — Big tabular date/time stamp / movie title-card
+
+A single typographic statement, no boxes. Reads like a movie title-card or print colophon. Massive condensed type, year + studio identity + availability.
+
+```
+                        2026
+                        ◇
+                        ELUX
+                        ━━━━━━━━━━━━━━
+                        SHIPPING SINCE 2021
+                        ━━━━━━━━━━━━━━
+                        NEXT AVAILABLE
+                        Q3
+```
+
+**Spec:**
+- `2026`: `clamp(60px, 8vw, 96px)` Bricolage condensed, ink color, tabular numerals
+- `ELUX`: `clamp(28px, 3vw, 36px)` condensed
+- Sub-lines: `12px uppercase tracking-[0.2em]` micro-caps
+- Hairline separators between stanzas
+- Right-aligned text (axis lines up with right page edge)
+- `border-l` on the aside to anchor it to the headline column
+
+**Wins:**
+- Zero maintenance (year + founding date + availability don't change weekly)
+- More confident — credentials as positioning, not advertising
+- Stronger BORING-alignment than the ledger
+- Honest from day one (real facts, not placeholder)
+
+**Loses:**
+- Less alive — no pulsing dot, no "right now" energy
+- No outbound links — pure decoration vs the ledger's two CTAs
+- Type stress — risks competing with the headline (which is already massive Bricolage)
+- Doesn't reward repeat visits
+
+**When to swap to it:**
+- Maintaining ledger content weekly becomes a chore
+- Placeholder client names in the ledger feel embarrassing before real assets land
+- v2 needs to feel more like a credentialed institution than a live dashboard
+
+---
+
+### Option 3 — Vertical client logo column
+
+A right-aligned stack of dashed text chips that become real client logos once assets land. Each chip is a name + one-line descriptor.
+
+```
+                        CLIENTS ─────
+                        ┌─────────────────────┐
+                        │ SAND & WITCH        │
+                        │ SaaS · MVP          │
+                        └─────────────────────┘
+                        ┌─────────────────────┐
+                        │ SWEET LORENS        │
+                        │ Fintech · Launch    │
+                        └─────────────────────┘
+                        ┌─────────────────────┐
+                        │ CAFFEINE CODERS     │
+                        │ AI Agent            │
+                        └─────────────────────┘
+                        ┌─────────────────────┐
+                        │ PASTA PALETTE       │
+                        │ Brand · Live        │
+                        └─────────────────────┘
+                        ┌─────────────────────┐
+                        │ + 36 MORE           │
+                        └─────────────────────┘
+                        ─────────────────────
+                        See all work ↗
+```
+
+**Spec:**
+- 5 dashed chips, ~220px wide, stacked vertically
+- Chip border: `border-2 border-dashed border-ink/30` until real logos land
+- Client name: `font-display font-bold text-sm uppercase`
+- Descriptor: `font-body text-[11px] text-ink-3`
+- `+ N MORE` chip for honest count
+- Bottom link routes to `#work`
+
+**Upgrade path:** when real logo SVGs arrive, the dashed text inside each chip is swapped for an `<img>` and the border becomes solid. The chip structure stays the same — drop-in replacement.
+
+**Wins:**
+- Proof signal at first glance ("this studio works with real founders")
+- Asset-friendly upgrade — start dashed, swap logos one at a time
+- Scales naturally — "+ 36 MORE" keeps the count honest
+- Visually supportive of the headline (chips read as evidence, not as a second statement)
+
+**Loses:**
+- Looks like a brochure when chips are placeholder — saying SAND & WITCH in dashed boxes 4 times reads as fake until real assets arrive
+- Heavy right-side density (5 chips vs the ledger's 3 blocks or the stamp's 1 statement)
+- No live energy
+- Genuinely needs real logo SVGs to look great — most asset-dependent of the four options
+
+**When to swap to it:**
+- Real client logo SVGs have landed
+- You want to show breadth ("we work with many") rather than depth ("we're shipping right now")
+- The portfolio section (03) is also unblocked so the hero chips can link to real case studies
+
+---
+
+### Option 4 — Negative space stays, one small detail
+
+Almost nothing. The right side stays empty. Only a single micro-anchor exists so the void reads as intentional.
+
+```
+                                                   ◆ ELUX MMXXVI
+```
+
+Or, slightly more substantive:
+
+```
+                                          ◆
+                                          EST. 2021
+                                          MALANG ⇄ BALI
+```
+
+**Spec:**
+- Absolutely-positioned at the top-right or middle-right of the hero
+- Maximum 3 lines of text, micro-cap sizing (`10–12px`)
+- One small `◆` mark as the visual anchor
+- No border, no card, no background — just type floating in cream
+- Optional: `MMXXVI` (Roman numeral 2026) instead of `2026` for editorial flavor
+
+**Wins:**
+- Boldest restraint move possible — "we don't need to fill this space" is louder than filling it
+- Zero maintenance
+- Lets the headline breathe completely — no competing visual elements
+- Reads as expensive (restraint = confidence; busy = desperation)
+- Smallest implementation (3 lines of JSX)
+
+**Loses:**
+- Risk of looking unfinished — if user doesn't read the void as intentional, they read it as broken
+- No useful information conveyed
+- Wastes 570px of prime above-the-fold real estate — arguably the most valuable pixels on the page
+- Most aesthetic, least functional — beautiful as poster, doesn't convert founders
+
+**When to swap to it:**
+- You're confident the headline alone carries the section
+- You want v2 to feel more like a portfolio piece than a sales page
+- Conversion isn't the primary goal of this page (e.g., it's a brand-led landing)
+- Pentagram-style restraint is the explicit aesthetic call
+
+---
+
+### Why we shipped Option 1 (live ledger)
+
+- **Live energy.** Pulsing dot on "NOW SHIPPING" makes the section feel like a dashboard, not a brochure.
+- **Functional engagement.** Two outbound links (`Book a call →`, `View case →`) drive user action.
+- **Honest scaffolding.** When real engagements arrive, swap the strings — no asset dependency, no design re-work.
+- **Right balance.** Carries meaning (current status) without competing with the headline visually.
+
+The other three remain valid swap targets if v2's direction or asset state changes.
