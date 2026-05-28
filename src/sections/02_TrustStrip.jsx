@@ -1,4 +1,12 @@
 import { motion } from 'framer-motion'
+import logo1 from '../assets/logo-images/logo-1.png'
+import logo2 from '../assets/logo-images/logo-2.png'
+import logo3 from '../assets/logo-images/logo-3.png'
+import logo4 from '../assets/logo-images/logo-4.png'
+import logo5 from '../assets/logo-images/logo-5.png'
+import logo6 from '../assets/logo-images/logo-6.png'
+
+const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6]
 
 /**
  * v2 Section 02 — Trust Strip.
@@ -48,7 +56,7 @@ export default function TrustStrip() {
           </div>
         </div>
 
-        {/* Honest dashed client-logo placeholders */}
+        {/* Client logos */}
         <div className="mt-8 pt-6 border-t-2 border-ink/15 grid md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center">
           <div>
             <div className="eyebrow text-ink-3 mb-1">[WORKING WITH]</div>
@@ -56,15 +64,14 @@ export default function TrustStrip() {
               Founders in Singapore, Sydney, Scotland &amp; New York.
             </div>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 items-center">
+            {clientLogos.map((logo, i) => (
+              <img
                 key={i}
-                className="aspect-[5/2] rounded-chip border-2 border-dashed border-ink/30 flex items-center justify-center"
-                title="Real client logo — to be added"
-              >
-                <span className="font-display font-bold text-[9px] uppercase tracking-[0.1em] text-ink-3">Client</span>
-              </div>
+                src={logo}
+                alt={`Client logo ${i + 1}`}
+                className="w-full h-6 object-contain"
+              />
             ))}
           </div>
         </div>
