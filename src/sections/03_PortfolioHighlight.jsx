@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
+import saasImg from '../assets/work-images/saas.webp'
+import fintechImg from '../assets/work-images/fintech.webp'
+import aiAgentImg from '../assets/work-images/ai-agent.webp'
+import mobilityImg from '../assets/work-images/mobility.webp'
 
 /**
- * v2 Section 03 — Portfolio Highlight (ASSET-BLOCKED, same as v1).
- * Honest dashed placeholders so the section reads as deliberately unfinished
- * until real client work lands. BORING-style heavy display headline + chip row.
+ * v2 Section 03 — Portfolio Highlight.
+ * BORING-style heavy display headline + chip row.
  */
 const cards = [
-  { tag: 'SAAS · MVP',  title: 'CASE 01',  sub: 'Replace with real project'   },
-  { tag: 'FINTECH',     title: 'CASE 02',  sub: 'Replace with real project'   },
-  { tag: 'AI AGENT',    title: 'CASE 03',  sub: 'Replace with real project'   },
-  { tag: 'MOBILITY',    title: 'CASE 04',  sub: 'Replace with real project'   },
+  { tag: 'SAAS · MVP',  title: 'SAAS MVP',   sub: 'Design & build from scratch',    img: saasImg     },
+  { tag: 'FINTECH',     title: 'Fintech',     sub: 'Redesign & scale',               img: fintechImg  },
+  { tag: 'AI AGENT',    title: 'AI Agent',    sub: 'AI-native product design',       img: aiAgentImg  },
+  { tag: 'MOBILITY',    title: 'Mobility',    sub: 'End-to-end product',            img: mobilityImg },
 ]
 
 export default function PortfolioHighlight() {
@@ -38,17 +41,19 @@ export default function PortfolioHighlight() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="aspect-[3/4] rounded-chip border-2 border-dashed border-ink/40 bg-cream-3/40 p-5 flex flex-col justify-between relative"
+              className="aspect-[3/4] rounded-chip p-5 flex flex-col justify-between relative overflow-hidden"
+              style={{ backgroundImage: `url(${c.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
-              <span className="self-start font-display font-bold text-[10px] uppercase tracking-[0.1em] text-ink-3 bg-cream px-2 py-1 rounded-chip border border-ink/20">
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-ink/50 rounded-chip" />
+
+              <span className="self-start font-display font-bold text-[10px] uppercase tracking-[0.1em] text-cream bg-primary px-2 py-1 rounded-chip relative z-10">
                 {c.tag}
               </span>
-              <div className="flex-1 flex items-center justify-center">
-                <span className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-ink-3">Asset placeholder</span>
-              </div>
-              <div>
-                <div className="font-display font-bold text-xl uppercase">{c.title}</div>
-                <div className="font-body text-xs text-ink-3 mt-1">{c.sub}</div>
+
+              <div className="relative z-10">
+                <div className="font-display font-bold text-xl uppercase text-cream">{c.title}</div>
+                <div className="font-body text-xs text-cream/80 mt-1">{c.sub}</div>
               </div>
             </motion.div>
           ))}

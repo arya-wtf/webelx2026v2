@@ -1,17 +1,22 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import aiSasImg from '../assets/service-images/Service Image - MVP UX and UI Design.webp'
+import fintechImg from '../assets/service-images/Service Image - Dashboard and Data UX.webp'
+import healthImg from '../assets/service-images/Service Image - Brand and Visual Enhancement.webp'
+import mobilityImg from '../assets/service-images/Service Image - Website Redesign.webp'
+import marketplaceImg from '../assets/service-images/Service Image - Launch Ready Landing Page.webp'
 
 /**
- * v2 Section 08 — Industries (ASSET-BLOCKED).
+ * v2 Section 08 — Industries.
  * BORING-style giant uppercase list. Click an industry, headline area
- * updates with placeholder for the real case visual that will land later.
+ * updates with real case visual.
  */
 const industries = [
-  { name: 'AI & SAAS',         count: '12', tagline: 'BUILT FOR BUILDERS.' },
-  { name: 'FINTECH',           count: '07', tagline: 'MONEY. FASTER.' },
-  { name: 'HEALTH & WELLNESS', count: '05', tagline: 'CARE, DESIGNED.' },
-  { name: 'MOBILITY',          count: '04', tagline: 'POWERED TO PLAY ALL DAY.' },
-  { name: 'MARKETPLACE',       count: '06', tagline: 'LIQUIDITY, BY DESIGN.' },
+  { name: 'AI & SAAS',         count: '12', tagline: 'BUILT FOR BUILDERS.',     img: aiSasImg     },
+  { name: 'FINTECH',           count: '07', tagline: 'MONEY. FASTER.',           img: fintechImg   },
+  { name: 'HEALTH & WELLNESS', count: '05', tagline: 'CARE, DESIGNED.',         img: healthImg    },
+  { name: 'MOBILITY',          count: '04', tagline: 'POWERED TO PLAY ALL DAY.', img: mobilityImg  },
+  { name: 'MARKETPLACE',       count: '06', tagline: 'LIQUIDITY, BY DESIGN.',    img: marketplaceImg },
 ]
 
 export default function Industries() {
@@ -45,7 +50,13 @@ export default function Industries() {
           </div>
 
           <div className="lg:sticky lg:top-24">
-            <div className="aspect-[5/4] rounded-chip border-2 border-dashed border-ink/40 bg-cream/40 flex flex-col items-center justify-center p-10 relative">
+            <div 
+              className="aspect-[5/4] rounded-chip flex flex-col items-center justify-center p-10 relative overflow-hidden"
+              style={{ backgroundImage: `url(${industries[active].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-ink/60" />
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
@@ -53,18 +64,18 @@ export default function Industries() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
                   transition={{ duration: 0.4 }}
-                  className="text-center"
+                  className="text-center relative z-10"
                 >
-                  <div className="display-lg text-ink mb-3">{industries[active].tagline}</div>
-                  <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-ink-3">
-                    Real case visual — to be added
+                  <div className="display-lg text-cream mb-3">{industries[active].tagline}</div>
+                  <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-cream/70">
+                    {industries[active].name}
                   </div>
                 </motion.div>
               </AnimatePresence>
-              <div className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.12em] text-ink-3">
+              <div className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.12em] text-cream/60">
                 elux/case-{String(active + 1).padStart(2, '0')}
               </div>
-              <div className="absolute top-5 right-5 text-right font-body text-[10px] text-ink-3 leading-relaxed">
+              <div className="absolute top-5 right-5 text-right font-body text-[10px] text-cream/60 leading-relaxed">
                 UX & UI Design<br />No-code Build<br />Brand System<br />Launch
               </div>
             </div>

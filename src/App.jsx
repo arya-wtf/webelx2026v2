@@ -11,6 +11,7 @@ import Numbers from './sections/06_Numbers.jsx'
 import ServicesByStage from './sections/07_ServicesByStage.jsx'
 import Industries from './sections/08_Industries.jsx'
 import HowWeWork from './sections/09_HowWeWork.jsx'
+import HowWeWorkV2 from './sections/12_HowWeWorkV2.jsx'
 import Testimonials from './sections/10_Testimonials.jsx'
 import WhoWereNotFor from './sections/11_WhoWereNotFor.jsx'
 
@@ -28,7 +29,8 @@ export default function App() {
         <Numbers />
         <ServicesByStage />
         <Industries />
-        <HowWeWork />
+        {/* <HowWeWork /> */}
+        <HowWeWorkV2 />
         <Testimonials />
         <WhoWereNotFor />
       </main>

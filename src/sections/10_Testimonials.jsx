@@ -37,10 +37,22 @@ export default function Testimonials() {
               transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}
             >
               {it.kind === 'video' ? (
-                <div className="aspect-[4/5] rounded-chip border-2 border-dashed border-ink/40 bg-cream/40 flex flex-col items-center justify-center p-5 relative">
-                  <div className="absolute top-4 left-4 font-display font-bold text-[11px] uppercase tracking-[0.14em] text-ink-2">{it.brand}</div>
-                  <div className="w-14 h-14 rounded-chip bg-ink text-cream flex items-center justify-center">▶</div>
-                  <div className="absolute bottom-4 font-display font-bold text-[9px] uppercase tracking-[0.14em] text-ink-3">Real video — to be added</div>
+                <div className="aspect-[4/5] rounded-chip overflow-hidden relative bg-ink">
+                  <video
+                    className="w-full h-full object-cover"
+                    src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-display font-bold text-[11px] uppercase tracking-[0.14em] text-cream mb-2">{it.brand}</div>
+                    <div className="w-10 h-10 rounded-full bg-cream/20 backdrop-blur-sm flex items-center justify-center">
+                      <span className="text-cream text-lg">▶</span>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className={`aspect-[4/5] rounded-chip border-2 border-ink p-6 flex flex-col justify-between ${it.dark ? 'bg-ink-bg text-cream' : 'bg-cream text-ink'}`}>
