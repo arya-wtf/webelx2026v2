@@ -1,53 +1,65 @@
-# Elux 2026 — Homepage v2 (BORING-style)
+# Elux 2026 — Homepage
 
-Independent v2 of the Elux Space homepage. **Not** a fork of v1 — fresh visual direction off the same PDF brief.
+The new Elux Space marketing homepage. Vite + React + Tailwind, with Framer Motion and GSAP for interaction.
 
-## Visual direction
-
-Inspired by [weareboring.nl](https://www.weareboring.nl/en) **structurally** — cream canvas, heavy condensed display type, editorial-agency tone — but with the **Elux brand blue** retained from v1 instead of BORING's lime green. Keeps brand consistency between v1 and v2 while still letting v2 read as a different visual interpretation.
+## Design tokens
 
 | Token | Value | Notes |
 |---|---|---|
 | `cream` | `#FFFBEA` | Body background |
-| `ink-bg` | `#0A0A0A` | Dark sections (matches v1 for cross-version consistency) |
+| `ink-bg` | `#0A0A0A` | Dark sections |
 | `ink` | `#0F1C12` | Body text on cream |
-| `primary` | `#2853FF` | Primary CTA — kept from v1 (Elux blue) |
+| `primary` | `#2853FF` | Primary CTA — Elux brand blue |
 | `primary-2` | `#1E3FCC` | Primary hover/pressed |
-| `butter` | `#F3F37A` | Secondary chip (kept for later use) |
+| `butter` | `#F3F37A` | Secondary chip |
 | `line` | `#E5DEB8` | Hairlines on cream |
-| Display | Bricolage Grotesque (condensed `wdth: 85`, weight 700) | Free Google Font; closest free match to BORING's Fkscreamer |
-| Body | Inter | Free Google Font; closest free match to Matter |
-| Radius | 4px | BORING's tight chip radius |
+| Display | Bricolage Grotesque (condensed `wdth: 85`, weight 700) | Google Fonts |
+| Body | Inter | Google Fonts |
+| Radius | 4px | Tight chip radius |
 
 ## Run
 
 ```bash
-cd homepagev2
 npm install
-npm run dev    # http://localhost:5174
+npm run dev
 ```
 
-v1 still runs on port 5173. You can run both at once and compare side-by-side.
+Dev server: `http://localhost:5174`
 
 ## Structure
-
-Same 11-section brief as v1 (from the PDF). Sections 03 / 08 / 10-videos remain asset-blocked.
 
 ```
 homepagev2/
 ├── package.json
-├── vite.config.js          (port 5174)
-├── tailwind.config.js      (BORING token system)
-├── index.html              (Bricolage + Inter fonts)
+├── vite.config.js
+├── tailwind.config.js
+├── index.html
 └── src/
     ├── main.jsx
     ├── App.jsx
-    ├── index.css           (display/eyebrow/btn primitives)
+    ├── index.css
     ├── components/
-    │   ├── Nav.jsx         (sticky cream, lime CTA)
-    │   └── Footer.jsx      (ink-bg dark, "Don't be boring" closer)
+    │   ├── Nav.jsx
+    │   ├── Footer.jsx
+    │   └── Marquee.jsx
     └── sections/
-        └── 01_Hero.jsx     ✅ shipped
+        ├── 01_Hero.jsx
+        ├── 02_TrustStrip.jsx
+        ├── 03_PortfolioHighlight.jsx
+        ├── 04_HowAINativeSolvesIt.jsx
+        ├── 05_ProblemSolution.jsx
+        ├── 06_Numbers.jsx
+        ├── 07_ServicesByStage.jsx
+        ├── 08_Industries.jsx
+        ├── 09_HowWeWork.jsx
+        ├── 10_Testimonials.jsx
+        └── 11_WhoWereNotFor.jsx
 ```
 
-Sections 02–11 to be built next.
+## Stack
+
+- **Vite** — dev + build
+- **React 18**
+- **Tailwind CSS** — utility-first styling
+- **Framer Motion** — component-level transitions
+- **GSAP** — timeline-driven hero entrance + count-up animations
