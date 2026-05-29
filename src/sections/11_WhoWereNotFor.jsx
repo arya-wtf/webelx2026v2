@@ -32,7 +32,7 @@ export default function WhoWereNotFor() {
           className="max-w-5xl mb-16"
         >
           <div className="eyebrow text-on-ink-3 mb-4">[⚠ HONEST FILTER]</div>
-          <h2 className="display-xl leading-[0.95]">
+          <h2 className="display-lg">
             WE'RE{' '}
             <span
               className="inline"
@@ -56,8 +56,8 @@ export default function WhoWereNotFor() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] gap-10 lg:gap-0 mb-20">
           <div className="lg:pr-12 min-w-0">
             <div className="flex items-baseline gap-3 mb-8">
-              <span className="display-md text-danger leading-none">×</span>
-              <h3 className="display-md leading-none">WE DON'T TAKE ON:</h3>
+              <span className="font-display font-bold text-2xl md:text-3xl text-danger leading-none">×</span>
+              <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE DON'T TAKE ON:</h3>
             </div>
             <ul className="flex flex-col">
               {REJECT.map((r, i) => (
@@ -91,8 +91,8 @@ export default function WhoWereNotFor() {
 
           <div className="lg:pl-12 min-w-0">
             <div className="flex items-baseline gap-3 mb-8">
-              <span className="display-md text-primary leading-none">✓</span>
-              <h3 className="display-md leading-none">WE'RE BUILT FOR:</h3>
+              <span className="font-display font-bold text-2xl md:text-3xl text-primary leading-none">✓</span>
+              <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE'RE BUILT FOR:</h3>
             </div>
             <ul className="flex flex-col min-w-0">
               {ACCEPT.map((a, i) => (
@@ -125,28 +125,6 @@ export default function WhoWereNotFor() {
             </ul>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="pt-10 border-t border-line-ink flex flex-col md:flex-row md:items-end md:justify-between gap-8"
-        >
-          <div className="max-w-2xl">
-            <div className="eyebrow text-on-ink-3 mb-3">[STILL READING?]</div>
-            <h3 className="display-lg leading-[0.95]">
-              GOOD. <span className="text-on-ink-2">THAT MEANS WE SHOULD TALK.</span>
-            </h3>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <a href="mailto:project@elux.space" className="btn-primary">
-              Start a project
-              <span className="inline-block w-4 h-4 leading-none">↗</span>
-            </a>
-            <a href="#work" className="btn-ghost-ink">Or, see the work first</a>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

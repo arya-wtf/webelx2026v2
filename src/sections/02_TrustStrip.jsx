@@ -34,25 +34,7 @@ export default function TrustStrip() {
             </h2>
           </div>
           <div className="flex flex-wrap gap-2">
-            {badges.map((b, i) => (
-              <motion.a
-                key={b.name}
-                href={b.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group flex items-center gap-2 px-3 py-2 rounded-chip bg-cream border-2 border-ink hover:bg-primary hover:text-cream transition-colors"
-              >
-                {b.rating && <span className="text-[#F5B544] tracking-[1.5px] text-xs leading-none">★★★★★</span>}
-                {b.rating && <span className="font-display font-bold text-sm tabular-nums leading-none">{b.rating}</span>}
-                <span className="font-display font-bold text-[11px] uppercase tracking-[0.08em] leading-none">{b.name}</span>
-                <span className="hidden md:inline font-body text-[11px] leading-none">· {b.proof}</span>
-                <span className="font-body text-[11px] leading-none">↗</span>
-              </motion.a>
-            ))}
+            {/* Badges removed per user request */}
           </div>
         </div>
 

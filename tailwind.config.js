@@ -62,12 +62,17 @@ export default {
           '0%':   { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%':      { opacity: '0' },
+        },
       },
       animation: {
         // Slow, steady scroll. -50% because we duplicate the content row
         // so the loop point is the midpoint of the doubled content.
         // 90s is roughly half the speed of 48s — calm, readable, never frantic.
         marquee: 'marquee 90s linear infinite',
+        blink:   'blink 1s step-end infinite',
       },
     },
   },

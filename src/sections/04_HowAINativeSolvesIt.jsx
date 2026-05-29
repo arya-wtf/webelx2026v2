@@ -49,7 +49,11 @@ export default function HowAINativeSolvesIt() {
             <ul className="space-y-2">
               {without.map((m) => (
                 <li key={m.t} className="flex items-center gap-3 p-3 bg-cream-2 border border-ink/15 rounded-chip">
-                  <span className="font-display font-bold text-ink-3">{m.ic}</span>
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E5403A] flex items-center justify-center">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 2L12 12M12 2L2 12" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+                    </svg>
+                  </span>
                   <div className="font-body text-sm">
                     <span className="line-through decoration-danger decoration-[1.5px]">{m.t}</span>
                     <small className="block italic text-ink-3 text-[11px] mt-0.5">"{m.s}"</small>
@@ -87,7 +91,11 @@ export default function HowAINativeSolvesIt() {
             <ul className="space-y-2">
               {withUs.map((m) => (
                 <li key={m.t} className="flex items-center gap-3 p-3 bg-cream/10 border border-cream/20 rounded-chip">
-                  <span className="font-display font-bold">{m.ic}</span>
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#3BAC5A] flex items-center justify-center">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 7L5.5 10.5L12 3.5" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
                   <div className="font-body text-sm">
                     {m.t}
                     <small className="block text-on-ink-3 text-[11px] mt-0.5">{m.s}</small>

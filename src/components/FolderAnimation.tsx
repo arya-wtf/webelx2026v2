@@ -292,7 +292,7 @@ export const FolderAnimation: React.FC = () => {
 
   return (
     <AbsoluteFill style={{
-      background: "radial-gradient(ellipse at 50% 80%, #0c1438 0%, #060a1c 55%, #020510 100%)",
+      background: "#000000",
       overflow: "hidden",
     }}>
       {/* Stars */}

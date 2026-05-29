@@ -50,23 +50,21 @@ export default function ProblemSolution() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
-              className={`grid lg:grid-cols-[auto_1fr_auto] gap-8 items-center border-2 border-ink rounded-chip p-8 md:p-10 ${
-                r.dark ? 'bg-ink-bg text-cream' : 'bg-cream-2 text-ink'
-              }`}
+              className="group grid lg:grid-cols-[auto_1fr_auto] gap-8 items-center border-2 border-ink rounded-chip p-8 md:p-10 bg-cream-2 hover:bg-ink-bg transition-colors duration-300 cursor-pointer"
             >
               <div className="display-md text-primary leading-none">
                 0{i + 1}
               </div>
               <div className="flex-1">
-                <div className={`font-display font-bold text-[11px] uppercase tracking-[0.14em] mb-2 ${r.dark ? 'text-primary' : 'text-primary'}`}>
+                <div className="font-display font-bold text-[11px] uppercase tracking-[0.14em] mb-2 text-primary">
                   {r.kicker}
                 </div>
-                <h3 className={`display-md mb-3 ${r.dark ? 'text-cream' : 'text-ink'}`}>{r.h}</h3>
-                <p className={`body-md max-w-xl ${r.dark ? 'text-on-ink-2' : 'text-ink-2'}`}>{r.p}</p>
+                <h3 className="display-md mb-3 text-ink group-hover:text-cream transition-colors duration-300">{r.h}</h3>
+                <p className="body-md max-w-xl text-ink-2 group-hover:text-on-ink-2 transition-colors duration-300">{r.p}</p>
               </div>
               <a
                 href="#contact"
-                className={r.dark ? 'btn-primary' : 'btn-cream'}
+                className="btn-cream group-hover:btn-primary transition-all duration-300"
               >
                 {r.cta}
                 <span className="inline-block w-4 h-4 leading-none">↗</span>

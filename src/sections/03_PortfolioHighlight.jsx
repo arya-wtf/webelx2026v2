@@ -27,33 +27,39 @@ export default function PortfolioHighlight() {
               NOT SHELVED.
             </h2>
           </div>
-          <div className="hidden md:flex gap-2">
-            <button className="w-11 h-11 rounded-chip border-2 border-ink hover:bg-primary hover:text-cream transition-colors">←</button>
-            <button className="w-11 h-11 rounded-chip bg-ink text-cream">→</button>
-          </div>
+          <a href="#contact" className="btn-cream hidden md:inline-flex">
+            All work ↗
+          </a>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="flex flex-col gap-6 items-center">
           {cards.map((c, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="aspect-[3/4] rounded-chip p-5 flex flex-col justify-between relative overflow-hidden"
+              transition={{ duration: 0.55, delay: i * 0.06 }}
+              className="w-full max-w-[72%] aspect-[16/9] rounded-chip relative overflow-hidden group cursor-pointer"
               style={{ backgroundImage: `url(${c.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
               {/* Dark overlay */}
-              <div className="absolute inset-0 bg-ink/50 rounded-chip" />
+              <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/55 transition-colors duration-300 rounded-chip" />
 
-              <span className="self-start font-display font-bold text-[10px] uppercase tracking-[0.1em] text-cream bg-primary px-2 py-1 rounded-chip relative z-10">
+              {/* Tag — top left */}
+              <span className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.1em] text-cream bg-primary px-2 py-1 rounded-chip z-10">
                 {c.tag}
               </span>
 
-              <div className="relative z-10">
-                <div className="font-display font-bold text-xl uppercase text-cream">{c.title}</div>
+              {/* Title + sub — bottom left */}
+              <div className="absolute bottom-5 left-5 z-10">
+                <div className="font-display font-bold text-2xl uppercase text-cream">{c.title}</div>
                 <div className="font-body text-xs text-cream/80 mt-1">{c.sub}</div>
+              </div>
+
+              {/* Arrow — bottom right */}
+              <div className="absolute bottom-5 right-5 z-10 w-9 h-9 rounded-full border border-cream/40 flex items-center justify-center text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                ↗
               </div>
             </motion.div>
           ))}

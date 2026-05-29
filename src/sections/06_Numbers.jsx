@@ -14,6 +14,7 @@ const stats = [
   { val: 7,  suf: 'D',  lab: 'AVG MVP TIMELINE',     desc: 'From signed brief to live, investor-ready MVP.',           src: 'Avg across 12 Seed launches' },
   { val: 55, suf: '%',  lab: 'FASTER ONBOARDING',    desc: 'Median lift on activation flow after one Elux sprint.',    src: 'Median across 8 Growth redesigns' },
   { val: 89, suf: '%',  lab: 'FEWER REGRESSIONS',    desc: 'Design + dev under one roof — bugs do not ping-pong.',     src: 'Internal QA, 2025 cohort' },
+  { val: 40, suf: '+',  lab: 'FOUNDERS SHIPPED',      desc: 'From pre-seed to Series A — every one launched live.',     src: 'Since 2021, across 9 industries' },
 ]
 
 function useCountUp(target) {
@@ -38,19 +39,20 @@ function useCountUp(target) {
   return [ref, val]
 }
 
-function Tile({ stat, featured }) {
+function Tile({ stat, featured, featuredCream }) {
   const [ref, val] = useCountUp(stat.val)
+  const isLarge = featured || featuredCream
   return (
     <div
       ref={ref}
-      className={`p-8 md:p-10 rounded-chip border-2 border-ink flex flex-col justify-between min-h-[280px] ${
-        featured ? 'bg-ink-bg text-cream lg:col-span-2 lg:row-span-1' : 'bg-cream text-ink'
+      className={`p-8 md:p-10 rounded-chip border-2 border-ink flex flex-col justify-between min-h-[280px] h-full ${
+        featured ? 'bg-ink-bg text-cream' : 'bg-cream text-ink'
       }`}
     >
       <div>
-        <div className="display flex items-baseline" style={{ fontSize: featured ? 'clamp(96px,16vw,200px)' : 'clamp(72px,10vw,128px)' }}>
+        <div className="display flex items-baseline" style={{ fontSize: isLarge ? 'clamp(96px,16vw,200px)' : 'clamp(72px,10vw,128px)' }}>
           <span className="tabular-nums">{val}</span>
-          <span className={featured ? 'text-primary' : 'text-primary'}>{stat.suf}</span>
+          <span className="text-primary">{stat.suf}</span>
         </div>
         <div className={`font-display font-bold text-[11px] uppercase tracking-[0.14em] mt-3 ${featured ? 'text-on-ink-3' : 'text-ink-3'}`}>
           {stat.lab}
@@ -91,10 +93,20 @@ export default function Numbers() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <Tile stat={stats[1]} featured />
+        {/* Row 1: big featured (55%) + small (7D) */}
+        <div className="grid md:grid-cols-3 gap-5 mb-5">
+          <div className="md:col-span-2">
+            <Tile stat={stats[1]} featured />
+          </div>
           <Tile stat={stats[0]} />
+        </div>
+
+        {/* Row 2: small (89%) + new full cream card */}
+        <div className="grid md:grid-cols-3 gap-5">
           <Tile stat={stats[2]} />
+          <div className="md:col-span-2">
+            <Tile stat={stats[3]} featuredCream />
+          </div>
         </div>
 
         <div className="mt-10 pt-6 border-t-2 border-ink/20 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

@@ -54,24 +54,8 @@ export default function Industries() {
               className="aspect-[5/4] rounded-chip flex flex-col items-center justify-center p-10 relative overflow-hidden"
               style={{ backgroundImage: `url(${industries[active].img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-ink/60" />
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center relative z-10"
-                >
-                  <div className="display-lg text-cream mb-3">{industries[active].tagline}</div>
-                  <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-cream/70">
-                    {industries[active].name}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+              {/* Dark overlay (reduced since no text) */}
+              <div className="absolute inset-0 bg-ink/20" />
               <div className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.12em] text-cream/60">
                 elux/case-{String(active + 1).padStart(2, '0')}
               </div>

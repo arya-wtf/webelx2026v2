@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Player } from "@remotion/player"
 import { RocketAnimation } from "../components/RocketAnimation"
 import { FolderAnimation } from "../components/FolderAnimation"
+import { SliderAnimation } from "../components/SliderAnimation"
 
 /**
  * v2 Section 12 — How We Work V2 (Duplicate).
@@ -16,8 +17,8 @@ const STEPS = [
     t: 'BRIEF & ALIGN',
     desc: 'One async intake, one strategy call. We come back with scope, timeline, and the smallest first ship in 48 hours.',
     deliverables: ['Scoped brief', 'Timeline', 'First-ship plan'],
-    animation: RocketAnimation,
-    durationInFrames: 150,
+    animation: FolderAnimation,
+    durationInFrames: 180,
   },
   {
     n: '02',
@@ -26,7 +27,7 @@ const STEPS = [
     t: 'DESIGN & BUILD IN PARALLEL',
     desc: 'UX, UI, and front-end happen in the same sprint. Less handoff. Faster feedback. Real builds, not pretty mockups.',
     deliverables: ['UX flows', 'UI screens', 'Production build'],
-    animation: FolderAnimation,
+    animation: SliderAnimation,
     durationInFrames: 180,
   },
   {
@@ -43,7 +44,7 @@ const STEPS = [
 
 export default function HowWeWorkV2() {
   return (
-    <section style={{ backgroundColor: '#020510' }}>
+    <section style={{ backgroundColor: '#000000' }}>
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-14">
           <div>
@@ -90,7 +91,7 @@ export default function HowWeWorkV2() {
                 )}
               </div>
               
-              <div className="w-full p-4 lg:p-5 -mt-8 lg:-mt-10 relative z-10 flex-grow flex flex-col" style={{ backgroundColor: '#020510' }}>
+              <div className="w-full p-4 lg:p-5 -mt-8 lg:-mt-10 relative z-10 flex-grow flex flex-col" style={{ backgroundColor: '#000000' }}>
                 <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-1.5">
                   STEP {s.n}
                 </div>

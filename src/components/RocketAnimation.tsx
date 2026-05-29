@@ -275,7 +275,7 @@ export const RocketAnimation: React.FC = () => {
 
   return (
     <AbsoluteFill style={{
-      background: "radial-gradient(ellipse at 50% 60%, #0d1540 0%, #060a1e 50%, #020510 100%)",
+      background: "#000000",
       overflow: "hidden",
     }}>
       {/* Star field */}

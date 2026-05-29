@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import ParticleSphere from '../components/ParticleSphere'
 
 /**
  * v2 Hero — composed for a single viewport + cinematic GSAP entrance.
@@ -16,75 +17,72 @@ import gsap from 'gsap'
  *   1.6s  → CTAs pop, staggered
  *   1.9s  → proof strip fades in
  *
- * After the entrance, only the verb keeps rotating (SHIP → LAUNCH →
- * CONVERT → SCALE every 2.6s, container width tweens via Framer layout).
+ * After the entrance, the verb keeps rotating (SHIP → LAUNCH →
+ * CONVERT → SCALE), cycling through a typewriter effect.
  */
 
 const VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.', 'SCALE.']
 
-function RotatingVerb() {
-  const [i, setI] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % VERBS.length), 2600)
-    return () => clearInterval(t)
-  }, [])
-  return (
-    <motion.span
-      layout
-      transition={{ layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
-      className="relative inline-flex items-center justify-center bg-primary text-cream px-3 -mx-1 overflow-hidden align-baseline"
-      style={{ height: '1em', verticalAlign: 'baseline' }}
-    >
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={VERBS[i]}
-          layout="position"
-          initial={{ y: '100%', opacity: 0 }}
-          animate={{ y: '0%', opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block whitespace-nowrap"
-        >
-          {VERBS[i]}
-        </motion.span>
-      </AnimatePresence>
-    </motion.span>
-  )
-}
+// Timing constants
+const TYPE_SPEED = 90           // ms per character while typing
+const ERASE_SPEED = 50          // ms per character while erasing
+const PAUSE_AFTER_TYPE = 1600   // pause before starting to erase
+const PAUSE_BEFORE_TYPE = 300   // pause before typing next word
 
-// live status ledger block — small text only, no decoration
-function LedgerBlock({ label, dotPulse = false, line1, line2, line2Href }) {
+function RotatingVerb() {
+  const [displayed, setDisplayed] = useState('')
+  const [phase, setPhase] = useState('typing') // 'typing' | 'pausing' | 'erasing'
+
+  useEffect(() => {
+    let cancelled = false
+    const sleep = (ms) => new Promise((res) => setTimeout(res, ms))
+
+    const run = async () => {
+      let idx = 0
+      await sleep(500) // initial delay
+
+      while (!cancelled) {
+        const word = VERBS[idx]
+
+        // TYPE characters one by one
+        setPhase('typing')
+        for (let i = 1; i <= word.length; i++) {
+          if (cancelled) return
+          setDisplayed(word.slice(0, i))
+          await sleep(TYPE_SPEED + (Math.random() * 40 - 20))
+        }
+
+        // PAUSE with blinking cursor
+        setPhase('pausing')
+        await sleep(PAUSE_AFTER_TYPE)
+
+        // ERASE characters one by one
+        setPhase('erasing')
+        for (let i = word.length - 1; i >= 0; i--) {
+          if (cancelled) return
+          setDisplayed(word.slice(0, i))
+          await sleep(ERASE_SPEED)
+        }
+
+        // Brief gap before next word
+        await sleep(PAUSE_BEFORE_TYPE)
+        idx = (idx + 1) % VERBS.length
+      }
+    }
+
+    run()
+    return () => { cancelled = true }
+  }, [])
+
   return (
-    <div data-hero-ledger style={{ willChange: 'transform, opacity' }}>
-      <div className="flex items-center gap-2 mb-1.5">
-        {dotPulse ? (
-          <span className="relative flex w-2 h-2">
-            <span className="absolute inset-0 rounded-full bg-primary opacity-50 animate-ping" />
-            <span className="relative w-2 h-2 rounded-full bg-primary" />
-          </span>
-        ) : (
-          <span className="text-ink-3 text-[11px] leading-none">◇</span>
-        )}
-        <span className="font-display font-bold text-[10px] uppercase tracking-[0.18em] text-ink-3">
-          {label}
-        </span>
-      </div>
-      <div className="font-display font-semibold text-[14px] tracking-[-0.005em] text-ink leading-tight">
-        {line1}
-      </div>
-      {line2 && (
-        line2Href ? (
-          <a
-            href={line2Href}
-            className="font-body text-[12px] text-ink-3 hover:text-primary transition-colors mt-0.5 inline-block"
-          >
-            {line2}
-          </a>
-        ) : (
-          <div className="font-body text-[12px] text-ink-3 mt-0.5">{line2}</div>
-        )
-      )}
-    </div>
+    <span className="inline-block bg-primary text-cream px-3 -mx-1 align-baseline whitespace-nowrap">
+      {displayed}
+      <span
+        className={`inline-block w-[2px] h-[0.85em] bg-cream align-middle ml-[2px] translate-y-[-0.05em] ${
+          phase === 'pausing' ? 'animate-blink' : 'opacity-100'
+        }`}
+      />
+    </span>
   )
 }
 
@@ -115,27 +113,27 @@ export default function Hero() {
     const chip = root.querySelector('[data-hero-chip]')
     const words = root.querySelectorAll('[data-hero-word] > span')
     const highlight = root.querySelector('[data-hero-highlight]')
-    const ledger = root.querySelectorAll('[data-hero-ledger]')
     const lede = root.querySelector('[data-hero-lede]')
     const ctas = root.querySelectorAll('[data-hero-cta]')
     const proof = root.querySelector('[data-hero-proof]')
+    const sphere = root.querySelector('[data-hero-sphere]')
 
     // set initial states (so SSR/hydration doesn't flash final state)
     gsap.set(chip, { yPercent: 60, opacity: 0 })
     gsap.set(words, { yPercent: 110 })
     gsap.set(highlight, { scaleX: 0, transformOrigin: 'left center' })
-    gsap.set(ledger, { y: 16, opacity: 0 })
     gsap.set(lede, { yPercent: 30, opacity: 0 })
     gsap.set(ctas, { y: 18, opacity: 0 })
     gsap.set(proof, { y: 12, opacity: 0 })
+    if (sphere) gsap.set(sphere, { scale: 0.9, opacity: 0 })
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
     tl.to(chip, { yPercent: 0, opacity: 1, duration: 0.5 }, 0.0)
       .to(words, { yPercent: 0, duration: 0.75, stagger: 0.07, ease: 'expo.out' }, 0.4)
       .to(highlight, { scaleX: 1, duration: 0.55, ease: 'power3.inOut' }, 1.0)
-      .to(ledger, { y: 0, opacity: 1, duration: 0.55, stagger: 0.12 }, 1.2)
       .to(lede, { yPercent: 0, opacity: 1, duration: 0.55 }, 1.55)
+      .to(sphere, { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 1.6)
       .to(ctas, { y: 0, opacity: 1, duration: 0.45, stagger: 0.08 }, 1.8)
       .to(proof, { y: 0, opacity: 1, duration: 0.5 }, 2.1)
 
@@ -162,8 +160,8 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* ROW 2 — headline (left) + live status ledger (right) */}
-        <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 self-center items-center">
+        {/* ROW 2 — headline + sphere */}
+        <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-12 self-center items-center">
           <h1
             className="display text-ink"
             style={{
@@ -192,30 +190,10 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* live status ledger — honest, real, no faking */}
-          <aside
-            className="hidden lg:flex flex-col gap-5 border-l-2 border-ink/15 pl-6 min-w-[220px] max-w-[260px]"
-            aria-label="Studio activity"
-          >
-            <LedgerBlock
-              label="NOW SHIPPING"
-              dotPulse
-              line1="Sand & Witch — MVP"
-              line2="Day 5 of 7"
-            />
-            <LedgerBlock
-              label="NEXT UP"
-              line1="Q3 · 2 slots open"
-              line2="Book a call →"
-              line2Href="#contact"
-            />
-            <LedgerBlock
-              label="LAST WEEK"
-              line1="Pasta Palette went live"
-              line2="View case →"
-              line2Href="#work"
-            />
-          </aside>
+          {/* Particle Sphere Animation */}
+          <div className="hidden lg:block w-full max-w-[420px] aspect-square mx-auto" style={{ willChange: 'transform, opacity' }} data-hero-sphere>
+            <ParticleSphere />
+          </div>
         </div>
 
         {/* ROW 3 — lede + CTAs */}
