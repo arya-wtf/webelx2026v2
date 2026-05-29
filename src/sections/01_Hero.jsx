@@ -165,7 +165,7 @@ export default function Hero() {
           <h1
             className="display text-ink"
             style={{
-              fontSize: 'clamp(48px, 9.5vw, 128px)',
+              fontSize: 'clamp(40px, 8vw, 110px)',
               lineHeight: 0.92,
               letterSpacing: '-0.025em',
               textTransform: 'uppercase',
