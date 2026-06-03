@@ -1,0 +1,9 @@
+# Codex CLI — MCP Server Config
+# Docs: https://openai.com/codex
+#
+# Taruh file ini di: ~/.codex/config.toml
+# Windows: C:\Users\<nama_user>\.codex\config.toml
+
+[mcp_servers.website-copy]
+command = "node"
+args = ["C:/Ayleen/Code/webelx2026v2/mcp-server.js"]

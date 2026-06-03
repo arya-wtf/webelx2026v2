@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import ParticleSphere from '../components/ParticleSphere'
+import { copy } from '../content/siteCopy'
 
 /**
  * v2 Hero — composed for a single viewport + cinematic GSAP entrance.
@@ -21,7 +22,7 @@ import ParticleSphere from '../components/ParticleSphere'
  * CONVERT → SCALE), cycling through a typewriter effect.
  */
 
-const VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.', 'SCALE.']
+const DEFAULT_VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.']
 
 // Timing constants
 const TYPE_SPEED = 90           // ms per character while typing
@@ -29,7 +30,7 @@ const ERASE_SPEED = 50          // ms per character while erasing
 const PAUSE_AFTER_TYPE = 1600   // pause before starting to erase
 const PAUSE_BEFORE_TYPE = 300   // pause before typing next word
 
-function RotatingVerb() {
+function RotatingVerb({ words = DEFAULT_VERBS }) {
   const [displayed, setDisplayed] = useState('')
   const [phase, setPhase] = useState('typing') // 'typing' | 'pausing' | 'erasing'
 
@@ -42,7 +43,7 @@ function RotatingVerb() {
       await sleep(500) // initial delay
 
       while (!cancelled) {
-        const word = VERBS[idx]
+        const word = words[idx]
 
         // TYPE characters one by one
         setPhase('typing')
@@ -66,13 +67,13 @@ function RotatingVerb() {
 
         // Brief gap before next word
         await sleep(PAUSE_BEFORE_TYPE)
-        idx = (idx + 1) % VERBS.length
+        idx = (idx + 1) % words.length
       }
     }
 
     run()
     return () => { cancelled = true }
-  }, [])
+  }, [words])
 
   return (
     <span className="inline-block bg-primary text-cream px-3 -mx-1 align-baseline whitespace-nowrap">
@@ -104,6 +105,13 @@ function HeroWord({ children, lineIdx, wordIdx }) {
 
 export default function Hero() {
   const rootRef = useRef(null)
+  const heroCopy = copy.hero
+  const headlineWords = heroCopy.headline
+    .replace(/[.!?]+$/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+  const firstLine = headlineWords.slice(0, 3)
+  const secondLine = headlineWords.slice(3, -1)
 
   useEffect(() => {
     if (!rootRef.current) return
@@ -156,7 +164,7 @@ export default function Hero() {
         <div className="overflow-hidden">
           <span data-hero-chip className="btn-cream inline-flex">
             <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-            The Digital Studio
+            {heroCopy.eyebrow}
           </span>
         </div>
 
@@ -172,26 +180,28 @@ export default function Hero() {
             }}
           >
             <span className="block">
-              <HeroWord lineIdx={0} wordIdx={0}>AI-NATIVE</HeroWord>
+              {firstLine.map((word, i) => (
+                <HeroWord key={word} lineIdx={0} wordIdx={i}>{word.toUpperCase()}</HeroWord>
+              )).reduce((acc, item, i) => i === 0 ? [item] : [...acc, ' ', item], [])}
             </span>
             <span className="block">
-              <HeroWord lineIdx={1} wordIdx={0}>PRODUCTS</HeroWord>{' '}
-              <HeroWord lineIdx={1} wordIdx={1}>THAT</HeroWord>
+              {secondLine.map((word, i) => (
+                <HeroWord key={word} lineIdx={1} wordIdx={i}>{word.toUpperCase()}</HeroWord>
+              )).reduce((acc, item, i) => i === 0 ? [item] : [...acc, ' ', item], [])}
             </span>
             <span className="block">
-              <HeroWord lineIdx={2} wordIdx={0}>ACTUALLY</HeroWord>{' '}
               <span
                 data-hero-highlight
                 className="inline-block"
                 style={{ willChange: 'transform' }}
               >
-                <RotatingVerb />
+                <RotatingVerb words={heroCopy.rotatingWords} />
               </span>
             </span>
           </h1>
 
           {/* Particle Sphere Animation */}
-          <div className="hidden lg:block w-full max-w-[420px] aspect-square mx-auto" style={{ willChange: 'transform, opacity' }} data-hero-sphere>
+          <div className="hidden lg:block w-full max-w-[560px] aspect-square mx-auto" style={{ willChange: 'transform, opacity' }} data-hero-sphere>
             <ParticleSphere />
           </div>
         </div>
@@ -199,20 +209,16 @@ export default function Hero() {
         {/* ROW 3 — lede + CTAs */}
         <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-8 items-end">
           <p data-hero-lede className="body-lg max-w-xl text-ink-2" style={{ willChange: 'transform, opacity' }}>
-            We design and build AI-native products for founders who need to launch fast
-            and look credible from day one.
-            <span className="block mt-2 text-ink-3 italic">
-              UX, UI, and front-end — under one roof. No handoff. No drama.
-            </span>
+            {heroCopy.subheadline}
           </p>
 
           <div className="flex flex-wrap items-center gap-3 lg:justify-end">
             <a data-hero-cta href="#contact" className="btn-primary" style={{ willChange: 'transform, opacity' }}>
-              Start a project
+              {heroCopy.primaryCta}
               <span className="inline-block w-4 h-4 leading-none">↗</span>
             </a>
             <a data-hero-cta href="#work" className="btn-cream" style={{ willChange: 'transform, opacity' }}>
-              See recent work
+              {heroCopy.secondaryCta}
             </a>
           </div>
         </div>
@@ -223,15 +229,15 @@ export default function Hero() {
           className="pt-5 border-t border-line flex flex-wrap items-center justify-between gap-x-6 gap-y-2"
           style={{ willChange: 'transform, opacity' }}
         >
-          <div className="eyebrow text-ink-3">Trusted by 40+ founders</div>
+          <div className="eyebrow text-ink-3">{heroCopy.proofEyebrow}</div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-ink-3 font-display text-[11px] uppercase tracking-[0.14em]">
-            <span>Clutch · 5.0</span>
+            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">★★★★★ 5.0 Clutch ↗</a>
             <span className="text-line">·</span>
-            <span>Contra · 5.0</span>
+            <a href="https://contra.com/eluxspace/work" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">5.0 Contra ↗</a>
             <span className="text-line">·</span>
-            <span>Dribbble · 2.9K</span>
+            <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Dribbble · 2.9K followers ↗</a>
             <span className="text-line">·</span>
-            <span>DesignRush · Verified</span>
+            <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">DesignRush · Verified agency ↗</a>
           </div>
         </div>
       </div>

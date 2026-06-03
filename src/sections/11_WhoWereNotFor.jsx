@@ -1,26 +1,9 @@
 import { motion } from 'framer-motion'
-
-/**
- * v2 Section 11 — Who We're NOT For.
- * BORING-style anti-positioning. Dark ink section. Two-column "We don't / We do"
- * rhythm with oversized headlines, strikethroughs on the rejects, primary-blue
- * underlines on the affirmations.
- */
-const REJECT = [
-  { t: 'Just a quick logo and a banner.',  aside: 'Quick is a budget word.' },
-  { t: 'Make it look like Apple.',          aside: 'Apple has 160K employees. You have a runway.' },
-  { t: 'A 6-month spec doc, then build.',   aside: "You'd be out of cash before kickoff." },
-  { t: 'Pixel-perfect or it is wrong.',     aside: 'Pixels are not the product. Outcomes are.' },
-  { t: '"Use AI" as the entire brief.',     aside: 'AI is a tool. Founders are the strategy.' },
-]
-const ACCEPT = [
-  'Founders who can decide in a meeting.',
-  'Products that need to ship this quarter.',
-  'Briefs that start with the user, not the tech.',
-  'Teams who measure success in adoption, not awards.',
-]
+import { copy } from '../content/siteCopy'
 
 export default function WhoWereNotFor() {
+  const fitCopy = copy.fitCheck
+
   return (
     <section id="contact" className="bg-ink-bg text-cream">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
@@ -31,36 +14,19 @@ export default function WhoWereNotFor() {
           transition={{ duration: 0.7 }}
           className="max-w-5xl mb-16"
         >
-          <div className="eyebrow text-on-ink-3 mb-4">[⚠ HONEST FILTER]</div>
-          <h2 className="display-lg">
-            WE'RE{' '}
-            <span
-              className="inline"
-              style={{
-                textDecorationLine: 'line-through',
-                textDecorationColor: '#DC2626',
-                textDecorationThickness: '0.09em',
-                textDecorationSkipInk: 'none',
-              }}
-            >
-              GOOD FOR EVERYONE.
-            </span>
-            <br />
-            BUILT FOR A FEW.
-          </h2>
-          <p className="body-lg text-on-ink-2 mt-7 max-w-2xl">
-            Saying who we're <em>not</em> for is faster than 30 discovery calls. If the left column sounds like you, save us both a meeting.
-          </p>
+          <div className="eyebrow text-on-ink-3 mb-4">{fitCopy.eyebrow}</div>
+          <h2 className="display-lg">{fitCopy.headline}</h2>
+          <p className="body-lg text-on-ink-2 mt-7 max-w-2xl">{fitCopy.supportingCopy}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] gap-10 lg:gap-0 mb-20">
           <div className="lg:pr-12 min-w-0">
             <div className="flex items-baseline gap-3 mb-8">
-              <span className="font-display font-bold text-2xl md:text-3xl text-danger leading-none">×</span>
+              <span className="font-display font-bold text-2xl md:text-3xl text-danger leading-none">x</span>
               <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE DON'T TAKE ON:</h3>
             </div>
             <ul className="flex flex-col">
-              {REJECT.map((r, i) => (
+              {fitCopy.rejects.map((r, i) => (
                 <motion.li
                   key={r.t}
                   initial={{ opacity: 0, x: -16 }}
@@ -75,7 +41,7 @@ export default function WhoWereNotFor() {
                       <div className="font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] text-on-ink-2 leading-tight">
                         <span className="line-through decoration-danger decoration-[1.5px]">{r.t}</span>
                       </div>
-                      <div className="font-body italic text-[13px] text-on-ink-3 mt-2">— {r.aside}</div>
+                      <div className="font-body italic text-[13px] text-on-ink-3 mt-2">- {r.aside}</div>
                     </div>
                   </div>
                 </motion.li>
@@ -95,7 +61,7 @@ export default function WhoWereNotFor() {
               <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE'RE BUILT FOR:</h3>
             </div>
             <ul className="flex flex-col min-w-0">
-              {ACCEPT.map((a, i) => (
+              {fitCopy.accepts.map((a, i) => (
                 <motion.li
                   key={a}
                   initial={{ opacity: 0, x: 16 }}

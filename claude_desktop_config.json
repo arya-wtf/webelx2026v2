@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "copywriting-editor": {
+      "command": "node",
+      "args": ["C:\\Ayleen\\Code\\webelx2026v2\\mcp-connect\\mcp-server.js"]
+    }
+  }
+}

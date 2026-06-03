@@ -2,24 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { copy } from '../content/siteCopy'
 
 gsap.registerPlugin(ScrollTrigger)
-
-/**
- * v2 Section 06 — Numbers.
- * BORING-style: numbers are the section. Massive condensed display digits,
- * thick borders, a featured tile in ink-bg with blue accent. Count-up on scroll.
- */
-const stats = [
-  { val: 7,  suf: 'D',  lab: 'AVG MVP TIMELINE',     desc: 'From signed brief to live, investor-ready MVP.',           src: 'Avg across 12 Seed launches' },
-  { val: 55, suf: '%',  lab: 'FASTER ONBOARDING',    desc: 'Median lift on activation flow after one Elux sprint.',    src: 'Median across 8 Growth redesigns' },
-  { val: 89, suf: '%',  lab: 'FEWER REGRESSIONS',    desc: 'Design + dev under one roof — bugs do not ping-pong.',     src: 'Internal QA, 2025 cohort' },
-  { val: 40, suf: '+',  lab: 'FOUNDERS SHIPPED',      desc: 'From pre-seed to Series A — every one launched live.',     src: 'Since 2021, across 9 industries' },
-]
 
 function useCountUp(target) {
   const ref = useRef(null)
   const [val, setVal] = useState(0)
+
   useEffect(() => {
     if (!ref.current) return
     const obj = { n: 0 }
@@ -31,17 +21,20 @@ function useCountUp(target) {
       paused: true,
       scrollTrigger: { trigger: ref.current, start: 'top 85%', toggleActions: 'play none none none' },
     })
+
     return () => {
       tween.kill()
       ScrollTrigger.getAll().filter((t) => t.trigger === ref.current).forEach((t) => t.kill())
     }
   }, [target])
+
   return [ref, val]
 }
 
 function Tile({ stat, featured, featuredCream }) {
   const [ref, val] = useCountUp(stat.val)
   const isLarge = featured || featuredCream
+
   return (
     <div
       ref={ref}
@@ -71,6 +64,9 @@ function Tile({ stat, featured, featuredCream }) {
 }
 
 export default function Numbers() {
+  const numbersCopy = copy.numbers
+  const stats = numbersCopy.stats
+
   return (
     <section className="bg-cream-2 border-y-2 border-ink">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
@@ -82,39 +78,30 @@ export default function Numbers() {
           className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-12"
         >
           <div>
-            <div className="eyebrow text-ink-3 mb-3">[BY THE NUMBERS]</div>
-            <h2 className="display-lg text-ink">
-              OUTCOMES.<br />
-              NOT PROMISES.
-            </h2>
+            <div className="eyebrow text-ink-3 mb-3">{numbersCopy.eyebrow}</div>
+            <h2 className="display-lg text-ink">{numbersCopy.headline}</h2>
           </div>
-          <p className="body-md text-ink-2">
-            Three numbers we will defend in a meeting. With receipts. Across <strong>40+ launches</strong>, here is what partners actually see.
-          </p>
+          <p className="body-md text-ink-2">{numbersCopy.supportingCopy}</p>
         </motion.div>
 
-        {/* Row 1: big featured (55%) + small (7D) */}
         <div className="grid md:grid-cols-3 gap-5 mb-5">
           <div className="md:col-span-2">
-            <Tile stat={stats[1]} featured />
+            <Tile stat={stats[1] ?? stats[0]} featured />
           </div>
           <Tile stat={stats[0]} />
         </div>
 
-        {/* Row 2: small (89%) + new full cream card */}
         <div className="grid md:grid-cols-3 gap-5">
-          <Tile stat={stats[2]} />
+          <Tile stat={stats[2] ?? stats[0]} />
           <div className="md:col-span-2">
-            <Tile stat={stats[3]} featuredCream />
+            <Tile stat={stats[3] ?? stats[0]} featuredCream />
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t-2 border-ink/20 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="font-body text-[13px] text-ink-2 max-w-2xl">
-            Numbers are from real engagements. Baseline is the client's pre-engagement metric — not an industry average. Methodology available on request.
-          </div>
+          <div className="font-body text-[13px] text-ink-2 max-w-2xl">{numbersCopy.methodologyNote}</div>
           <a href="#contact" className="font-display font-bold text-[12px] uppercase tracking-[0.12em] text-primary hover:underline">
-            Ask for the methodology ↗
+            {numbersCopy.cta} ↗
           </a>
         </div>
       </div>

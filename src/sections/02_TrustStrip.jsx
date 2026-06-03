@@ -5,8 +5,11 @@ import logo3 from '../assets/logo-images/logo-3.png'
 import logo4 from '../assets/logo-images/logo-4.png'
 import logo5 from '../assets/logo-images/logo-5.png'
 import logo6 from '../assets/logo-images/logo-6.png'
+import logo7 from '../assets/logo-images/logo-7.png'
+import logo8 from '../assets/logo-images/logo-8.png'
+import { copy } from '../content/siteCopy'
 
-const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6]
+const clientLogos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8]
 
 /**
  * v2 Section 02 — Trust Strip.
@@ -22,15 +25,16 @@ const badges = [
 ]
 
 export default function TrustStrip() {
+  const trustCopy = copy.trustStrip
+
   return (
     <section className="bg-cream-2 border-y-2 border-ink">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <div className="eyebrow text-ink-3 mb-2">[VERIFIED BY]</div>
+            <div className="eyebrow text-ink-3 mb-2">{trustCopy.eyebrow}</div>
             <h2 className="display-md text-ink leading-[1]">
-              FOUR PLATFORMS.<br />
-              ZERO FAKING IT.
+              {trustCopy.headline}
             </h2>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -41,18 +45,18 @@ export default function TrustStrip() {
         {/* Client logos */}
         <div className="mt-8 pt-6 border-t-2 border-ink/15 grid md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-center">
           <div>
-            <div className="eyebrow text-ink-3 mb-1">[WORKING WITH]</div>
+            <div className="eyebrow text-ink-3 mb-1">{trustCopy.workingWithEyebrow}</div>
             <div className="font-body text-xs text-ink-2 max-w-[180px] leading-snug">
-              Founders in Singapore, Sydney, Scotland &amp; New York.
+              {trustCopy.supportingCopy}
             </div>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 items-center">
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-6 items-center w-full">
             {clientLogos.map((logo, i) => (
               <img
                 key={i}
                 src={logo}
                 alt={`Client logo ${i + 1}`}
-                className="w-full h-6 object-contain"
+                className="h-4 md:h-5 w-auto object-contain mx-auto"
               />
             ))}
           </div>

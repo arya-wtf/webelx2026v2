@@ -1,68 +1,36 @@
 import { motion } from 'framer-motion'
-import { Player } from "@remotion/player"
-import { RocketAnimation } from "../components/RocketAnimation"
-import { FolderAnimation } from "../components/FolderAnimation"
-import { SliderAnimation } from "../components/SliderAnimation"
+import { Player } from '@remotion/player'
+import { RocketAnimation } from '../components/RocketAnimation'
+import { FolderAnimation } from '../components/FolderAnimation'
+import { SliderAnimation } from '../components/SliderAnimation'
+import { copy } from '../content/siteCopy'
 
-/**
- * v2 Section 12 — How We Work V2 (Duplicate).
- * BORING-style vertical timeline. Big tabular time markers, ink-bordered
- * cards, deliverables strip, "and loop" return at the bottom.
- */
-const STEPS = [
-  {
-    n: '01',
-    time: '48H',
-    timeLabel: 'to scope',
-    t: 'BRIEF & ALIGN',
-    desc: 'One async intake, one strategy call. We come back with scope, timeline, and the smallest first ship in 48 hours.',
-    deliverables: ['Scoped brief', 'Timeline', 'First-ship plan'],
-    animation: FolderAnimation,
-    durationInFrames: 180,
-  },
-  {
-    n: '02',
-    time: 'DAY 1–6',
-    timeLabel: 'design + build',
-    t: 'DESIGN & BUILD IN PARALLEL',
-    desc: 'UX, UI, and front-end happen in the same sprint. Less handoff. Faster feedback. Real builds, not pretty mockups.',
-    deliverables: ['UX flows', 'UI screens', 'Production build'],
-    animation: SliderAnimation,
-    durationInFrames: 180,
-  },
-  {
-    n: '03',
-    time: 'DAY 7',
-    timeLabel: 'live → ∞',
-    t: 'SHIP & ITERATE',
-    desc: 'Live on day 7. Then weekly improvements based on real users, not on Slack opinions.',
-    deliverables: ['Public launch', 'Weekly improvements', 'Usage telemetry'],
-    animation: RocketAnimation,
-    durationInFrames: 150,
-  },
-]
+const animations = [FolderAnimation, SliderAnimation, RocketAnimation]
+const durations = [180, 180, 150]
 
 export default function HowWeWorkV2() {
+  const processCopy = copy.process
+  const steps = processCopy.steps.map((step, i) => ({
+    ...step,
+    animation: animations[i],
+    durationInFrames: durations[i],
+  }))
+
   return (
     <section style={{ backgroundColor: '#000000' }}>
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-14">
           <div>
-            <div className="eyebrow text-on-ink-3 mb-3">[OUR PROCESS]</div>
-            <h2 className="display-lg text-on-ink">
-              A LOOP.<br />
-              NOT A WATERFALL.
-            </h2>
+            <div className="eyebrow text-on-ink-3 mb-3">{processCopy.eyebrow}</div>
+            <h2 className="display-lg text-on-ink">{processCopy.headline}</h2>
           </div>
-          <p className="body-md text-on-ink-2">
-            We don't hand off, then disappear. Same team designs it, ships it, and keeps shipping every week after launch.
-          </p>
+          <p className="body-md text-on-ink-2">{processCopy.supportingCopy}</p>
         </div>
 
         <ol className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {STEPS.map((s, i) => (
+          {steps.map((s, i) => (
             <motion.li
-              key={s.n}
+              key={s.t}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
@@ -82,18 +50,14 @@ export default function HowWeWorkV2() {
                     clickToPlay={false}
                     controls={false}
                     initiallyMuted={true}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      position: 'absolute',
-                    }}
+                    style={{ width: '100%', height: '100%', position: 'absolute' }}
                   />
                 )}
               </div>
-              
+
               <div className="w-full p-4 lg:p-5 -mt-8 lg:-mt-10 relative z-10 flex-grow flex flex-col" style={{ backgroundColor: '#000000' }}>
                 <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-1.5">
-                  STEP {s.n}
+                  STEP {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 className="display text-lg lg:text-xl xl:text-[22px] text-on-ink mb-2 leading-none whitespace-nowrap overflow-hidden text-ellipsis">{s.t}</h3>
                 <p className="text-[13px] lg:text-sm leading-relaxed text-on-ink-2 mb-4 flex-grow">{s.desc}</p>
@@ -114,7 +78,6 @@ export default function HowWeWorkV2() {
           ))}
         </ol>
 
-        {/* AND LOOP return */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -131,9 +94,7 @@ export default function HowWeWorkV2() {
               </div>
             </div>
           </div>
-          <div className="font-body text-sm text-on-ink-2 max-w-2xl pt-1">
-            After ship, we're not done. We're on weekly cycles. Each loop trims friction, adds value, and gets you closer to product-market fit.
-          </div>
+          <div className="font-body text-sm text-on-ink-2 max-w-2xl pt-1">{processCopy.loopCopy}</div>
         </motion.div>
       </div>
     </section>
