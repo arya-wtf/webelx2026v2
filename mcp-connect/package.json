@@ -5,13 +5,14 @@
   "main": "mcp-server.js",
   "type": "module",
   "scripts": {
-    "start": "node mcp-server.js"
+    "start": "supergateway --port $PORT --stdio \"node mcp-server.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "supergateway": "^3.4.3",
     "zod": "^4.4.3"
   }
 }
