@@ -4,7 +4,7 @@
 A Pragmatic AI-Native Design Partner
 
 ## Headline
-AI-NATIVE PRODUCTS THAT ACTUALLY
+WE BUILD PRODUCTS THAT ACTUALLY
 
 ## Rotating Words
 - SHIP.
