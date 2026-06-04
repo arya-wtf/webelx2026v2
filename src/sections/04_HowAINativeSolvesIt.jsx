@@ -8,7 +8,7 @@ export default function HowAINativeSolvesIt() {
   const withUs = aiCopy.withItems.map((item) => ({ t: item.title, s: item.text }))
 
   return (
-    <section className="bg-cream-2 border-t-2 border-ink">
+    <section className="bg-cream-2 border-y-2 border-ink">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-6xl mb-16">
           <div className="eyebrow text-ink-3 mb-3">{aiCopy.eyebrow}</div>

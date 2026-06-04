@@ -13,7 +13,7 @@ export default function Footer() {
               elux<span className="text-primary">.</span>space
             </div>
             <p className="body-sm text-on-ink-2 max-w-sm mb-10">
-              We help startups and companies design digital products people love and trust.
+              Skip the bloat. Build with Elux.
             </p>
             <div className="flex flex-col gap-3 font-body text-[15px] text-on-ink mb-6">
               <a href="mailto:hello@elux.space" className="hover:text-primary transition-colors">hello@elux.space</a>
@@ -29,6 +29,19 @@ export default function Footer() {
           </div>
 
           {/* Links Cols */}
+          <div>
+            <h4 className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-6">Menu</h4>
+            <ul className="flex flex-col gap-5 text-[14px] font-body text-on-ink-2">
+              <li><a href="#" className="hover:text-on-ink transition-colors">Home</a></li>
+              <li><a href="#work" className="hover:text-on-ink transition-colors">Work</a></li>
+              <li><a href="#services" className="hover:text-on-ink transition-colors">Services</a></li>
+              <li><a href="#about" className="hover:text-on-ink transition-colors">About</a></li>
+              <li><a href="#insights" className="hover:text-on-ink transition-colors">Insights</a></li>
+              <li><a href="#contact" className="hover:text-on-ink transition-colors">Contact</a></li>
+              <li><a href="#blog" className="hover:text-on-ink transition-colors">Blog</a></li>
+            </ul>
+          </div>
+
           <div>
             <h4 className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-6">Services</h4>
             <ul className="flex flex-col gap-5 text-[14px] font-body text-on-ink-2">
@@ -54,24 +67,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-6">Studio</h4>
-            <ul className="flex flex-col gap-5 text-[14px] font-body text-on-ink-2">
-              <li><a href="#" className="hover:text-on-ink transition-colors">Home</a></li>
-              <li><a href="#work" className="hover:text-on-ink transition-colors">Work</a></li>
-              <li><a href="#services" className="hover:text-on-ink transition-colors">Services</a></li>
-              <li><a href="#process" className="hover:text-on-ink transition-colors">Process</a></li>
-              <li><a href="#testimonials" className="hover:text-on-ink transition-colors">Testimonials</a></li>
-              <li><a href="#contact" className="hover:text-on-ink transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          <div>
             <h4 className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-6">Connect</h4>
             <ul className="flex flex-col gap-5 text-[14px] font-body text-on-ink-2">
               <li><a href="https://dribbble.com" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Dribbble</a></li>
+              <li><a href="https://contra.com" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Contra</a></li>
+              <li><a href="https://behance.net" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Behance</a></li>
               <li><a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Instagram</a></li>
-              <li><a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">LinkedIn</a></li>
-              <li><a href="mailto:hello@elux.space" className="hover:text-on-ink transition-colors">Email Us</a></li>
+              <li><a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Twitter</a></li>
+              <li><a href="https://threads.net" target="_blank" rel="noreferrer" className="hover:text-on-ink transition-colors">Thread</a></li>
             </ul>
           </div>
 
@@ -84,7 +87,7 @@ export default function Footer() {
       <div className="mx-auto max-w-page px-6 lg:px-10 py-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="font-body text-[13px] text-on-ink-3">
-            © {new Date().getFullYear()} Elux Space. All rights reserved.
+            © 2026 Elux Space. All rights reserved.
           </div>
           <div className="flex gap-8 text-[13px] font-body text-on-ink-2">
             <a href="#" className="hover:text-on-ink transition-colors">Privacy</a>

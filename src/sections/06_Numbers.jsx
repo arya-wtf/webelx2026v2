@@ -43,7 +43,7 @@ function Tile({ stat, featured, featuredCream }) {
       }`}
     >
       <div>
-        <div className="display flex items-baseline" style={{ fontSize: isLarge ? 'clamp(96px,16vw,200px)' : 'clamp(72px,10vw,128px)' }}>
+        <div className="display flex items-baseline" style={{ fontSize: isLarge ? 'clamp(72px,12vw,140px)' : 'clamp(56px,8vw,100px)' }}>
           <span className="tabular-nums">{val}</span>
           <span className="text-primary">{stat.suf}</span>
         </div>
@@ -68,20 +68,16 @@ export default function Numbers() {
   const stats = numbersCopy.stats
 
   return (
-    <section className="bg-cream-2 border-y-2 border-ink">
+    <section className="bg-cream-2">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-12"
+          className="mb-8"
         >
-          <div>
-            <div className="eyebrow text-ink-3 mb-3">{numbersCopy.eyebrow}</div>
-            <h2 className="display-lg text-ink">{numbersCopy.headline}</h2>
-          </div>
-          <p className="body-md text-ink-2">{numbersCopy.supportingCopy}</p>
+          <div className="eyebrow text-ink-3">[OUTCOMES BY NUMBERS]</div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-5 mb-5">
@@ -96,13 +92,6 @@ export default function Numbers() {
           <div className="md:col-span-2">
             <Tile stat={stats[3] ?? stats[0]} featuredCream />
           </div>
-        </div>
-
-        <div className="mt-10 pt-6 border-t-2 border-ink/20 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="font-body text-[13px] text-ink-2 max-w-2xl">{numbersCopy.methodologyNote}</div>
-          <a href="#contact" className="font-display font-bold text-[12px] uppercase tracking-[0.12em] text-primary hover:underline">
-            {numbersCopy.cta} ↗
-          </a>
         </div>
       </div>
     </section>

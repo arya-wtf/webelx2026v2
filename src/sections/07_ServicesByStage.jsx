@@ -4,6 +4,46 @@ import { copy } from '../content/siteCopy'
 
 const ORDER = ['Seed', 'Growth', 'Scale']
 
+function AccordionItem({ num, title, desc, delay }) {
+  const [isHovered, setIsHovered] = useState(false)
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 12 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, delay }}
+      className="border-b-2 border-ink group cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsHovered(!isHovered)}
+    >
+      <div className="grid grid-cols-[auto_1fr_auto] gap-4 md:gap-5 py-5 md:py-6 items-center">
+        <span className="font-display font-bold text-[11px] text-ink-3 tabular-nums w-6">{num}</span>
+        <span className="font-display font-bold text-lg md:text-xl uppercase tracking-[0.02em] group-hover:text-primary transition-colors pr-2 md:pr-4">{title}</span>
+        <span className={`w-8 h-8 md:w-9 md:h-9 rounded-chip border-2 flex items-center justify-center transition-all duration-300 ${isHovered ? 'bg-primary text-cream border-primary rotate-45' : 'border-ink group-hover:border-primary group-hover:text-primary'}`}>
+           +
+        </span>
+      </div>
+      
+      <AnimatePresence>
+        {isHovered && desc && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6 pl-10 md:pl-14 pr-8 md:pr-12 font-body text-base md:text-lg text-ink-2 leading-relaxed">
+              {desc}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 export default function ServicesByStage() {
   const servicesCopy = copy.services
   const [stage, setStage] = useState('Seed')
@@ -35,7 +75,7 @@ export default function ServicesByStage() {
           })}
         </div>
 
-        <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-12 items-start">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start">
           <AnimatePresence mode="wait">
             <motion.div
               key={stage}
@@ -44,29 +84,32 @@ export default function ServicesByStage() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
             >
-              <h3 className="display-lg text-ink whitespace-pre-line leading-[0.95]">{data.h}</h3>
-              <p className="body-lg text-ink-2 mt-6 max-w-md">{data.p}</p>
-              <a href="#contact" className="btn-primary mt-8">
-                {data.cta}
-                <span className="inline-block w-4 h-4 leading-none">↗</span>
+              <h3 className="display-lg text-ink whitespace-pre-line leading-[1.05]">{data.h}</h3>
+              <p className="font-body text-lg text-ink-2 mt-6 max-w-md leading-relaxed">{data.p}</p>
+              <a href="#contact" className="btn-primary mt-8 inline-flex">
+                {data.cta} ↗
               </a>
             </motion.div>
           </AnimatePresence>
 
           <div className="border-t-2 border-ink">
-            {data.items.map((it, i) => (
-              <motion.div
-                key={`${stage}-${it}`}
-                initial={{ opacity: 0, x: 12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="grid grid-cols-[auto_1fr_auto] gap-5 py-5 border-b-2 border-ink items-center group cursor-pointer"
-              >
-                <span className="font-display font-bold text-[11px] text-ink-3 tabular-nums">0{i + 1}</span>
-                <span className="font-display font-bold text-lg uppercase tracking-[0.02em] group-hover:text-primary transition-colors">{it}</span>
-                <span className="w-9 h-9 rounded-chip border-2 border-ink flex items-center justify-center group-hover:bg-primary group-hover:text-cream group-hover:border-primary transition-colors">↗</span>
-              </motion.div>
-            ))}
+            {data.items.map((it, i) => {
+              // Parse '01 Title | Description'
+              const [titleWithNum, desc] = it.split(' | ')
+              const numMatch = titleWithNum?.match(/^(\d+)\s+(.*)$/)
+              const num = numMatch ? numMatch[1] : `0${i + 1}`
+              const title = numMatch ? numMatch[2] : titleWithNum
+              
+              return (
+                 <AccordionItem 
+                   key={`${stage}-${title}`} 
+                   num={num} 
+                   title={title} 
+                   desc={desc} 
+                   delay={i * 0.06} 
+                 />
+              )
+            })}
           </div>
         </div>
       </div>

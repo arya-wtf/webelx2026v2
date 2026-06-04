@@ -9,7 +9,7 @@ export default function ProblemSolution() {
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
         <div className="max-w-6xl mb-14">
           <div className="eyebrow text-ink-3 mb-3">{problemCopy.eyebrow}</div>
-          <h2 className="display-lg text-ink">{problemCopy.headline}</h2>
+          <h2 className="display-lg text-ink whitespace-pre-line">{problemCopy.headline}</h2>
         </div>
 
         <div className="flex flex-col gap-5">

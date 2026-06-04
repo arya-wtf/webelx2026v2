@@ -50,9 +50,8 @@ export default function WhoWereNotFor() {
           </div>
 
           <div className="hidden lg:block relative" aria-hidden="true">
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 w-px bg-line-ink h-[40%]" />
-            <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-on-ink-3" />
-            <div className="absolute left-1/2 top-[55%] -translate-x-1/2 w-px bg-line-ink h-[45%]" />
+            <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-line-ink" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-on-ink-3" />
           </div>
 
           <div className="lg:pl-12 min-w-0">
@@ -61,36 +60,58 @@ export default function WhoWereNotFor() {
               <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE'RE BUILT FOR:</h3>
             </div>
             <ul className="flex flex-col min-w-0">
-              {fitCopy.accepts.map((a, i) => (
-                <motion.li
-                  key={a}
-                  initial={{ opacity: 0, x: 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.5, delay: i * 0.08 + 0.15 }}
-                  className="py-5 border-b border-line-ink"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="font-display font-bold text-xs text-primary pt-2 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                    <div className="flex-1">
-                      <div className="relative inline-block font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] leading-tight">
-                        <span>{a}</span>
-                        <motion.span
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true, margin: '-60px' }}
-                          transition={{ duration: 0.7, delay: i * 0.08 + 0.35 }}
-                          className="absolute left-0 right-0 -bottom-1 h-[2px] bg-primary origin-left"
-                          aria-hidden="true"
-                        />
+              {fitCopy.accepts.map((a, i) => {
+                const [title, desc] = a.split(' | ')
+                return (
+                  <motion.li
+                    key={title}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5, delay: i * 0.08 + 0.15 }}
+                    className="py-5 border-b border-line-ink"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="font-display font-bold text-xs text-primary pt-2 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                      <div className="flex-1">
+                        <div className="relative inline-block font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] leading-tight">
+                          <span>{title}</span>
+                          <motion.span
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true, margin: '-60px' }}
+                            transition={{ duration: 0.7, delay: i * 0.08 + 0.35 }}
+                            className="absolute left-0 right-0 -bottom-1 h-[2px] bg-primary origin-left"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        {desc && (
+                          <div className="font-body text-sm text-on-ink-2 mt-4 leading-relaxed pr-4">
+                            {desc}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
-                </motion.li>
-              ))}
+                  </motion.li>
+                )
+              })}
             </ul>
           </div>
         </div>
+
+        {fitCopy.cta && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 flex justify-center"
+          >
+            <a href="#contact" className="btn-primary inline-flex">
+              {fitCopy.cta} ↗
+            </a>
+          </motion.div>
+        )}
       </div>
     </section>
   )

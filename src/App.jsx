@@ -5,7 +5,10 @@ import Footer from './components/Footer.jsx'
 import Hero from './sections/01_Hero.jsx'
 import TrustStrip from './sections/02_TrustStrip.jsx'
 import PortfolioHighlight from './sections/03_PortfolioHighlight.jsx'
+import TestimonialsV2 from './sections/03b_TestimonialsV2.jsx'
+import TheShift from './sections/03_TheShift.jsx'
 import HowAINativeSolvesIt from './sections/04_HowAINativeSolvesIt.jsx'
+import OwnProducts from './sections/04c_OwnProducts.jsx'
 import ProblemSolution from './sections/05_ProblemSolution.jsx'
 import Numbers from './sections/06_Numbers.jsx'
 import ServicesByStage from './sections/07_ServicesByStage.jsx'
@@ -35,14 +38,19 @@ export default function App() {
           <main>
             <Hero />
             <TrustStrip />
-            <PortfolioHighlight />
-            <HowAINativeSolvesIt />
-            <ProblemSolution />
             <Numbers />
+            <TheShift />
+            <HowAINativeSolvesIt />
+            <PortfolioHighlight />
+            <TestimonialsV2 />
+            <OwnProducts />
+            <ProblemSolution />
             <ServicesByStage />
             <Industries />
             <HowWeWorkV2 />
-            <Testimonials />
+            <div className="hidden">
+              <Testimonials />
+            </div>
             <WhoWereNotFor />
             <StillReading />
           </main>

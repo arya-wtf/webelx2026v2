@@ -14,12 +14,15 @@ export default function PortfolioHighlight() {
   return (
     <section id="work" className="bg-cream">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-8">
           <div>
             <div className="eyebrow text-ink-3 mb-3">{portfolioCopy.eyebrow}</div>
-            <h2 className="display-lg text-ink">{portfolioCopy.headline}</h2>
+            <h2 className="display-lg text-ink mb-4">{portfolioCopy.headline}</h2>
+            {portfolioCopy.body && (
+              <p className="font-body text-lg text-ink-2 max-w-xl">{portfolioCopy.body}</p>
+            )}
           </div>
-          <a href="#contact" className="btn-cream hidden md:inline-flex">
+          <a href="#contact" className="btn-cream hidden md:inline-flex shrink-0">
             {portfolioCopy.cta} ↗
           </a>
         </div>

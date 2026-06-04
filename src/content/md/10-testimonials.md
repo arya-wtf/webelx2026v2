@@ -1,7 +1,7 @@
 # 10 Testimonials
 
 ## Eyebrow
-[IN THEIR WORDS]
+[DON'T TAKE OUR WORD FOR IT]
 
 ## Headline
 What it feels like to build with Elux.

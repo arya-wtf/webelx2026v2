@@ -1,39 +1,37 @@
 # 04 How AI-Native Solves It
 
 ## Eyebrow
-[THE DIFFERENCE]
+[WHY IT SHIPS]
 
 ## Headline
 Stop circling. Start shipping.
 
 ## Without Elux Label
-Without Elux
+WITHOUT ELUX
 
 ## Without Elux Headline
-Everyone is solving a different product.
+THE PRODUCT KEEPS ALMOST LAUNCHING.
 
 ## Without Elux Items
-- Unclear product direction: "Are we building an MVP, a landing page, or the whole thing?"
-- Scattered requirements: "Let's add this feature too."
-- Design-before-clarity: "Looks nice, but what is the user supposed to do?"
-- Build rework: "The flow changed after dev started."
-- Decision drag: "Waiting for everyone to align."
+- Inputs stay scattered: Ideas, references, user needs, and constraints live in too many places. The team debates what to move first instead of moving.
+- Decisions drag: Scope, user flows, and interface structure take too long to become clear. You're back in alignment meetings instead of building.
+- Design and build disconnect: Screens move forward before the product logic and edge cases are understood. Then build hits a wall.
+- Revisions pile up: Without a connected workflow, each round of feedback starts a new loop instead of closing the last one.
 
 ## Without Elux Result
-Result: Still not ready to launch.
+RESULT: STILL NOT LAUNCHED AFTER 6 WEEKS.
 
 ## With Elux Label
-With Elux
+WITH ELUX
 
 ## With Elux Headline
-One product loop. Designed to ship.
+ONE FOCUSED SPRINT TO SOMETHING REAL.
 
 ## With Elux Items
-- AI-assisted product intake: From messy notes to scoped priorities
-- Product clarity first: UX direction, content logic, and interface structure aligned early
-- Design + build in parallel: UX, UI, Webflow, Framer, or custom code moving in one workflow
-- Faster iteration: Less guessing. More deciding.
-- Launch-ready output: Built clean, tested, and ready to move
+- Intake turns chaos into direction: Goals, references, users, constraints, and priorities get structured into clear scope, flows, and launch decisions fast.
+- Expert judgment keeps it practical: Every scope call, UX tradeoff, and product decision is made by someone who has shipped this before.
+- UX, UI, and build move together: Interface design, product logic, and implementation thinking stay aligned from day one — whether the output is Webflow, Framer, or custom code.
+- Iteration sharpens, not spirals: Each round of feedback moves the product forward. Not back into discovery.
 
 ## With Elux Result
-Result: Shipped in one sprint.
+RESULT: SHIPPED IN ONE FOCUSED SPRINT.

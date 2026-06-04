@@ -1,13 +1,16 @@
 # 03 Portfolio Highlight
 
 ## Eyebrow
-[RECENTLY SHIPPED]
+[THE WORK THAT PROVES IT]
 
 ## Headline
 Shipped. Not shelved.
 
+## Body
+Good output is the result of a better process. Here is what that looks like in practice.
+
 ## CTA
-All work
+SEE ALL WORK
 
 ## Portfolio Cards
 

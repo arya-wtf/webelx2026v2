@@ -1,16 +1,19 @@
-# 02 Trust Strip
+# 02 Credibility Bar
 
 ## Eyebrow
-[TRUSTED BY]
+PROVEN ACROSS PRODUCTS, TEAMS, AND MARKETS
 
-## Headline
-Founders, SMBs, and product teams who shipped with us.
+## Ratings
+- 5.0 CLUTCH →
+- 5.0 CONTRA →
+- DRIBBBLE 2.9K FOLLOWERS →
+- DESIGNRUSH VERIFIED →
 
 ## Working With Eyebrow
-[WORKING WITH]
+CLIENTS
 
 ## Supporting Copy
-Trusted across the US, Europe, Australia, and Singapore.
+95+ products shipped · 34+ countries
 
 ## Badges
 - Clutch: 5.0, 10 verified reviews

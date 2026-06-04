@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import ParticleSphere from '../components/ParticleSphere'
@@ -7,22 +6,15 @@ import { copy } from '../content/siteCopy'
 /**
  * v2 Hero — composed for a single viewport + cinematic GSAP entrance.
  *
- * Pattern (grounded in awwwards GSAP refs + Webflow nf-daily-12):
- * the hero PERFORMS ITSELF on page load via a single GSAP timeline.
+ * Sections:
+ *   01 — HERO (this component)
+ *   02 — CREDIBILITY BAR (TrustStrip)
+ *   03 — PROOF BY NUMBER (Numbers)
  *
- *   0.0s  → chip slides up + fades in
- *   0.4s  → headline words stagger in (clip-path mask wipe)
- *   1.0s  → highlight box scales-X from 0 → 1 (draws in)
- *   1.2s  → rotating verb resolves inside the box
- *   1.3s  → lede fades up
- *   1.6s  → CTAs pop, staggered
- *   1.9s  → proof strip fades in
- *
- * After the entrance, the verb keeps rotating (SHIP → LAUNCH →
- * CONVERT → SCALE), cycling through a typewriter effect.
+ * The proof strip has been moved out of the Hero into TrustStrip.
  */
 
-const DEFAULT_VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.']
+const DEFAULT_VERBS = ['SHIP.', 'LAUNCH.', 'CONVERT.', 'SCALE.']
 
 // Timing constants
 const TYPE_SPEED = 90           // ms per character while typing
@@ -110,8 +102,12 @@ export default function Hero() {
     .replace(/[.!?]+$/g, '')
     .split(/\s+/)
     .filter(Boolean)
-  const firstLine = headlineWords.slice(0, 3)
-  const secondLine = headlineWords.slice(3, -1)
+  const firstLine = headlineWords.slice(0, 2)
+  const secondLine = headlineWords.slice(2, -1)
+
+  // Strip the arrow from CTA text if present in markdown
+  const primaryCtaText = heroCopy.primaryCta.replace(/\s*→$/, '').trim()
+  const secondaryCtaText = heroCopy.secondaryCta.trim()
 
   useEffect(() => {
     if (!rootRef.current) return
@@ -123,16 +119,14 @@ export default function Hero() {
     const highlight = root.querySelector('[data-hero-highlight]')
     const lede = root.querySelector('[data-hero-lede]')
     const ctas = root.querySelectorAll('[data-hero-cta]')
-    const proof = root.querySelector('[data-hero-proof]')
     const sphere = root.querySelector('[data-hero-sphere]')
 
-    // set initial states (so SSR/hydration doesn't flash final state)
+    // set initial states
     gsap.set(chip, { yPercent: 60, opacity: 0 })
     gsap.set(words, { yPercent: 110 })
     gsap.set(highlight, { scaleX: 0, transformOrigin: 'left center' })
     gsap.set(lede, { yPercent: 30, opacity: 0 })
     gsap.set(ctas, { y: 18, opacity: 0 })
-    gsap.set(proof, { y: 12, opacity: 0 })
     if (sphere) gsap.set(sphere, { scale: 0.9, opacity: 0 })
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -143,7 +137,6 @@ export default function Hero() {
       .to(lede, { yPercent: 0, opacity: 1, duration: 0.55 }, 1.55)
       .to(sphere, { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 1.6)
       .to(ctas, { y: 0, opacity: 1, duration: 0.45, stagger: 0.08 }, 1.8)
-      .to(proof, { y: 0, opacity: 1, duration: 0.5 }, 2.1)
 
     return () => { tl.kill() }
   }, [])
@@ -154,10 +147,10 @@ export default function Hero() {
         className="mx-auto max-w-page px-6 lg:px-10 grid"
         style={{
           minHeight: 'calc(100vh - 64px - 32px)',
-          gridTemplateRows: 'auto 1fr auto auto',
+          gridTemplateRows: 'auto 1fr auto',
           rowGap: 'clamp(20px, 3vh, 36px)',
           paddingTop: 'clamp(20px, 4vh, 44px)',
-          paddingBottom: 'clamp(20px, 3vh, 36px)',
+          paddingBottom: 'clamp(32px, 5vh, 56px)',
         }}
       >
         {/* ROW 1 — eyebrow chip */}
@@ -173,21 +166,17 @@ export default function Hero() {
           <h1
             className="display text-ink"
             style={{
-              fontSize: 'clamp(40px, 8vw, 110px)',
+              fontSize: 'clamp(42px, 8.5vw, 125px)',
               lineHeight: 0.92,
               letterSpacing: '-0.025em',
               textTransform: 'uppercase',
             }}
           >
             <span className="block">
-              {firstLine.map((word, i) => (
-                <HeroWord key={word} lineIdx={0} wordIdx={i}>{word.toUpperCase()}</HeroWord>
-              )).reduce((acc, item, i) => i === 0 ? [item] : [...acc, ' ', item], [])}
+              <HeroWord lineIdx={0} wordIdx={0}>{firstLine.join(' ').toUpperCase()}</HeroWord>
             </span>
             <span className="block">
-              {secondLine.map((word, i) => (
-                <HeroWord key={word} lineIdx={1} wordIdx={i}>{word.toUpperCase()}</HeroWord>
-              )).reduce((acc, item, i) => i === 0 ? [item] : [...acc, ' ', item], [])}
+              <HeroWord lineIdx={1} wordIdx={0}>{secondLine.join(' ').toUpperCase()}</HeroWord>
             </span>
             <span className="block">
               <span
@@ -214,30 +203,12 @@ export default function Hero() {
 
           <div className="flex flex-wrap items-center gap-3 lg:justify-end">
             <a data-hero-cta href="#contact" className="btn-primary" style={{ willChange: 'transform, opacity' }}>
-              {heroCopy.primaryCta}
+              {primaryCtaText}
               <span className="inline-block w-4 h-4 leading-none">↗</span>
             </a>
             <a data-hero-cta href="#work" className="btn-cream" style={{ willChange: 'transform, opacity' }}>
-              {heroCopy.secondaryCta}
+              {secondaryCtaText}
             </a>
-          </div>
-        </div>
-
-        {/* ROW 4 — proof strip */}
-        <div
-          data-hero-proof
-          className="pt-5 border-t border-line flex flex-wrap items-center justify-between gap-x-6 gap-y-2"
-          style={{ willChange: 'transform, opacity' }}
-        >
-          <div className="eyebrow text-ink-3">{heroCopy.proofEyebrow}</div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-ink-3 font-display text-[11px] uppercase tracking-[0.14em]">
-            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">★★★★★ 5.0 Clutch ↗</a>
-            <span className="text-line">·</span>
-            <a href="https://contra.com/eluxspace/work" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">5.0 Contra ↗</a>
-            <span className="text-line">·</span>
-            <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Dribbble · 2.9K followers ↗</a>
-            <span className="text-line">·</span>
-            <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">DesignRush · Verified agency ↗</a>
           </div>
         </div>
       </div>

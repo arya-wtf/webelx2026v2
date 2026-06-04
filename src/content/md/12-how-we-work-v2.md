@@ -1,46 +1,47 @@
 # 12 How We Work V2
 
 ## Eyebrow
-[OUR PROCESS]
+[HOW WE WORK]
 
 ## Headline
-A loop. Not a waterfall.
+A TIGHTER LOOP.
+NOT A SLOW HANDOFF CHAIN.
 
 ## Supporting Copy
-We don't hand off, then disappear. Same team designs it, ships it, and keeps shipping every week after launch.
+AI speeds up the process. Humans make the calls. Here is what that looks like inside every engagement.
 
 ## Steps
 
-### 01 Brief & Align
+### 01 INTAKE AND DIRECTION
 Time: 48H
 
 Time Label: to scope
 
-Description: One async intake, one strategy call. We come back with scope, timeline, and the smallest first ship in 48 hours.
+Description: Messy briefs, scattered inputs, half-formed ideas. We use AI tooling to structure scope, map user flows, and get to product direction faster than a traditional kickoff ever would. Less time aligning. More time building.
 
 Deliverables:
 - Scoped brief
 - Timeline
 - First-ship plan
 
-### 02 Design & Build In Parallel
+### 02 EXPERT-LED DECISIONS
 Time: DAY 1-6
 
 Time Label: design + build
 
-Description: UX, UI, and front-end happen in the same sprint. Less handoff. Faster feedback. Real builds, not pretty mockups.
+Description: Every UX tradeoff, scope call, and product direction is made by someone who has shipped this before. AI accelerates the work. Experienced designers and builders decide what ships.
 
 Deliverables:
 - UX flows
 - UI screens
 - Production build
 
-### 03 Ship & Iterate
+### 03 DESIGN AND BUILD IN ONE LOOP
 Time: DAY 7
 
 Time Label: live -> ongoing
 
-Description: Live on day 7. Then weekly improvements based on real users, not on Slack opinions.
+Description: Design and frontend do not wait for each other. No handoff lag, no spec translation errors. UX, UI, and build decisions move together — so what comes out is ready to ship, not ready to review.
 
 Deliverables:
 - Public launch

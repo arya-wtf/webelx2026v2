@@ -158,12 +158,10 @@ export const copy = {
     subheadline: section(heroMarkdown, 'Subheadline'),
     primaryCta: section(heroMarkdown, 'Primary CTA'),
     secondaryCta: section(heroMarkdown, 'Secondary CTA'),
-    proofEyebrow: section(heroMarkdown, 'Proof Eyebrow'),
-    proofLinks: list(heroMarkdown, 'Proof Links'),
   },
   trustStrip: {
     eyebrow: section(trustStripMarkdown, 'Eyebrow'),
-    headline: section(trustStripMarkdown, 'Headline'),
+    ratings: list(trustStripMarkdown, 'Ratings'),
     workingWithEyebrow: section(trustStripMarkdown, 'Working With Eyebrow'),
     supportingCopy: section(trustStripMarkdown, 'Supporting Copy'),
     badges: parseColonItems(trustStripMarkdown, 'Badges'),
@@ -171,6 +169,7 @@ export const copy = {
   portfolio: {
     eyebrow: section(portfolioMarkdown, 'Eyebrow'),
     headline: section(portfolioMarkdown, 'Headline'),
+    body: section(portfolioMarkdown, 'Body'),
     cta: section(portfolioMarkdown, 'CTA'),
     cards: Object.entries(subsections(portfolioMarkdown, 'Portfolio Cards')).map(([title, block]) => ({
       title,
@@ -236,6 +235,7 @@ export const copy = {
     supportingCopy: section(fitCheckMarkdown, 'Supporting Copy'),
     rejects: parseRejects(fitCheckMarkdown),
     accepts: list(fitCheckMarkdown, "We're Built For"),
+    cta: section(fitCheckMarkdown, 'CTA'),
   },
   process: {
     eyebrow: section(processMarkdown, 'Eyebrow'),

@@ -22,7 +22,7 @@ export default function HowWeWorkV2() {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-14">
           <div>
             <div className="eyebrow text-on-ink-3 mb-3">{processCopy.eyebrow}</div>
-            <h2 className="display-lg text-on-ink">{processCopy.headline}</h2>
+            <h2 className="display-lg text-on-ink whitespace-pre-line">{processCopy.headline}</h2>
           </div>
           <p className="body-md text-on-ink-2">{processCopy.supportingCopy}</p>
         </div>
@@ -59,7 +59,7 @@ export default function HowWeWorkV2() {
                 <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-1.5">
                   STEP {String(i + 1).padStart(2, '0')}
                 </div>
-                <h3 className="display text-lg lg:text-xl xl:text-[22px] text-on-ink mb-2 leading-none whitespace-nowrap overflow-hidden text-ellipsis">{s.t}</h3>
+                <h3 className="display text-lg lg:text-xl xl:text-[22px] text-on-ink mb-2 leading-tight">{s.t}</h3>
                 <p className="text-[13px] lg:text-sm leading-relaxed text-on-ink-2 mb-4 flex-grow">{s.desc}</p>
                 <div className="flex flex-col gap-2 pt-3 mt-auto" style={{ borderTop: '1px solid rgba(80,110,255,0.15)' }}>
                   <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3">

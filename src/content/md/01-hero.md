@@ -1,7 +1,7 @@
 # 01 Hero
 
 ## Eyebrow
-A Pragmatic AI-Native Design Partner
+PRAGMATIC AI-NATIVE DESIGN AND BUILD PARTNER
 
 ## Headline
 WE BUILD PRODUCTS THAT ACTUALLY
@@ -10,21 +10,13 @@ WE BUILD PRODUCTS THAT ACTUALLY
 - SHIP.
 - LAUNCH.
 - CONVERT.
+- SCALE.
 
 ## Subheadline
-We turn messy product ideas into launch-ready UX, interfaces, and builds fast.
+For SaaS, AI, and modern product teams ready to turn messy ideas into clear UX, well-structured interfaces, and launch-ready products through a pragmatic AI-native design-to-build workflow.
 
 ## Primary CTA
-Start a Project
+START A PROJECT →
 
 ## Secondary CTA
-See Recent Work
-
-## Proof Eyebrow
-Trusted by 100+ Founders
-
-## Proof Links
-- 5.0 Clutch
-- 5.0 Contra
-- Dribbble - 2.9K followers
-- DesignRush - Verified agency
+SEE RECENT WORK

@@ -4,10 +4,9 @@
 [SOUNDS LIKE A FIT?]
 
 ## Headline
-You probably have a product to ship.
+YOU HAVE A PRODUCT
+TO SHIP.
+LET'S STOP WAITING.
 
 ## Primary CTA
-Start a Project
-
-## Secondary CTA
-Or, see the work first
+START A PROJECT
