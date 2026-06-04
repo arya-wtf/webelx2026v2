@@ -1,11 +1,11 @@
 {
   "name": "mcp-connect",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Elux copywriting MCP server — reads/writes GitHub content via API",
+  "main": "mcp-server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node mcp-server.js"
   },
   "keywords": [],
   "author": "",
