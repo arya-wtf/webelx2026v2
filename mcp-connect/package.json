@@ -1,18 +1,17 @@
 {
   "name": "mcp-connect",
-  "version": "2.0.0",
-  "description": "Elux copywriting MCP server — reads/writes GitHub content via API",
-  "main": "mcp-server.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "supergateway --port $PORT --stdio \"node mcp-server.js\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "supergateway": "^3.4.3",
     "zod": "^4.4.3"
   }
 }
