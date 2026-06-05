@@ -9,8 +9,8 @@ function AccordionItem({ num, title, desc, delay }) {
   
   return (
     <motion.div
-      initial={{ opacity: 0, x: 12 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
       className="border-b-2 border-ink group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
@@ -52,11 +52,13 @@ export default function ServicesByStage() {
   return (
     <section id="services" className="bg-cream">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
+        {/* Header: Full-width */}
         <div className="mb-12">
           <div className="eyebrow text-ink-3 mb-3">{servicesCopy.eyebrow}</div>
-          <h2 className="display-lg text-ink">{servicesCopy.headline}</h2>
+          <h2 className="display-lg text-ink max-w-4xl">{servicesCopy.headline}</h2>
         </div>
 
+        {/* Tabs */}
         <div className="flex flex-wrap gap-2 mb-12">
           {ORDER.map((s, i) => {
             const active = stage === s
@@ -75,7 +77,8 @@ export default function ServicesByStage() {
           })}
         </div>
 
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start">
+        {/* Content: Headline Left, Description Right */}
+        <div className="mb-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={stage}
@@ -83,16 +86,23 @@ export default function ServicesByStage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
+              className="mb-8 grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-16 items-start"
             >
-              <h3 className="display-lg text-ink whitespace-pre-line leading-[1.05]">{data.h}</h3>
-              <p className="font-body text-lg text-ink-2 mt-6 max-w-md leading-relaxed">{data.p}</p>
-              <a href="#contact" className="btn-primary mt-8 inline-flex">
-                {data.cta} ↗
-              </a>
+              {/* Left — Headline */}
+              <h3 className="display-md text-ink whitespace-pre-line leading-[1.05]">{data.h}</h3>
+              
+              {/* Right — Description + CTA */}
+              <div className="lg:pt-2">
+                <p className="font-body text-lg text-ink-2 leading-relaxed mb-6">{data.p}</p>
+                <a href="#contact" className="btn-primary inline-flex">
+                  {data.cta} ↗
+                </a>
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="border-t-2 border-ink">
+          {/* 2-Column Accordion */}
+          <div className="border-t-2 border-ink grid md:grid-cols-2 gap-0 md:gap-x-8 lg:gap-x-12">
             {data.items.map((it, i) => {
               // Parse '01 Title | Description'
               const [titleWithNum, desc] = it.split(' | ')
@@ -112,6 +122,8 @@ export default function ServicesByStage() {
             })}
           </div>
         </div>
+
+
       </div>
     </section>
   )
