@@ -41,18 +41,6 @@ export default function HowWeWork() {
                 </div>
                 <h3 className="display-md text-ink mb-3">{s.t}</h3>
                 <p className="body-md text-ink-2 mb-5 max-w-2xl">{s.desc}</p>
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 border-t-2 border-ink/15">
-                  <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-ink-3">
-                    You walk away with
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {s.deliverables.map((d) => (
-                      <span key={d} className="px-2.5 py-1 rounded-chip bg-cream border border-ink/30 font-display font-bold text-[10px] uppercase tracking-[0.06em] text-ink-2">
-                        {d}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
             </motion.li>
           ))}
