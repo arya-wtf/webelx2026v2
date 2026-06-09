@@ -55,7 +55,8 @@ export default function ServicesByStage() {
         {/* Header: Full-width */}
         <div className="mb-12">
           <div className="eyebrow text-ink-3 mb-3">{servicesCopy.eyebrow}</div>
-          <h2 className="display-lg text-ink max-w-4xl">{servicesCopy.headline}</h2>
+          <h2 className="display-lg text-ink max-w-4xl mb-6">{servicesCopy.headline}</h2>
+          <p className="font-body text-xl text-ink-2 max-w-3xl leading-relaxed">{servicesCopy.supportingCopy}</p>
         </div>
 
         {/* Tabs */}
@@ -93,6 +94,9 @@ export default function ServicesByStage() {
               
               {/* Right — Description + CTA */}
               <div className="lg:pt-2">
+                {data.sprint && (
+                  <div className="font-body italic text-ink-3 mb-4">{data.sprint}</div>
+                )}
                 <p className="font-body text-lg text-ink-2 leading-relaxed mb-6">{data.p}</p>
                 <a href="#contact" className="btn-primary inline-flex">
                   {data.cta} ↗

@@ -14,6 +14,7 @@ import Numbers from './sections/06_Numbers.jsx'
 import ServicesByStage from './sections/07_ServicesByStage.jsx'
 import Industries from './sections/08_Industries.jsx'
 import HowWeWork from './sections/09_HowWeWork.jsx'
+import TheAIStack from './sections/09b_TheAIStack.jsx'
 import HowWeWorkV2 from './sections/12_HowWeWorkV2.jsx'
 import Testimonials from './sections/10_Testimonials.jsx'
 import WhoWereNotFor from './sections/11_WhoWereNotFor.jsx'
@@ -41,16 +42,13 @@ export default function App() {
             <Numbers />
             <TheShift />
             <HowAINativeSolvesIt />
+            <HowWeWork />
+            <TheAIStack />
             <PortfolioHighlight />
-            <TestimonialsV2 />
             <OwnProducts />
             <ProblemSolution />
             <ServicesByStage />
-            <Industries />
-            <HowWeWorkV2 />
-            <div className="hidden">
-              <Testimonials />
-            </div>
+            <TestimonialsV2 />
             <WhoWereNotFor />
             <StillReading />
           </main>

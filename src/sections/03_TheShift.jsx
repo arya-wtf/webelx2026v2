@@ -1,24 +1,8 @@
 import { motion } from 'framer-motion'
+import { copy } from '../content/siteCopy'
 
 export default function TheShift() {
-  const items = [
-    {
-      title: 'EVERY HANDOFF LOSES CONTEXT',
-      desc: 'The more people touch it in sequence, the less the final product looks like the original idea.',
-    },
-    {
-      title: 'SPEED COMES FROM STRUCTURE',
-      desc: 'Messy inputs — briefs, references, constraints — get turned into clear scope and decisions faster when the right tools and judgment are working together.',
-    },
-    {
-      title: 'EXPERTISE IS THE FILTER',
-      desc: 'Speed without judgment produces a lot of output and not much product. Experienced designers and builders decide what is actually worth shipping.',
-    },
-    {
-      title: 'DESIGN SHAPED AROUND BUILD',
-      desc: 'UX and UI decisions made with implementation in mind. So what you see is what gets built.',
-    },
-  ]
+  const shiftCopy = copy.theShift
 
   return (
     <section className="bg-ink-bg text-cream border-t-2 border-ink-bg">
@@ -34,10 +18,14 @@ export default function TheShift() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.55 }}
           >
-            <div className="eyebrow text-cream/50 mb-6">[WHY MOST PRODUCTS STALL BEFORE THEY SHIP]</div>
+            <div className="eyebrow text-cream/50 mb-6">{shiftCopy.eyebrow}</div>
             <h2 className="display-lg text-cream">
-              THE HANDOFF IS WHERE<br />
-              MOMENTUM GOES TO DIE.
+              {shiftCopy.headline.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
             </h2>
           </motion.div>
 
@@ -49,18 +37,17 @@ export default function TheShift() {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="lg:pt-12 font-body text-lg text-cream/70 flex flex-col gap-6 max-w-xl"
           >
-            <p>
-              The traditional design-to-development process was made for clean handoffs, not fast-moving product teams. When strategy, UX, UI, and frontend sit in separate lanes, the product loses context before it reaches launch.
-            </p>
-            <p className="text-cream">
-              Elux Space works differently. We bring product direction, UX, UI, and frontend thinking into one AI-native design-to-build workflow, so teams can move from messy ideas to clearer product decisions faster.
-            </p>
+            {shiftCopy.body.split('\n\n').map((p, i) => (
+              <p key={i} className={i === 1 ? 'text-cream' : ''}>
+                {p}
+              </p>
+            ))}
           </motion.div>
         </div>
 
         {/* Bottom Row: 4 Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {items.map((item, index) => (
+          {shiftCopy.items.map((item, index) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 24 }}
@@ -77,10 +64,11 @@ export default function TheShift() {
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 <h3 className="font-display font-bold text-lg md:text-xl uppercase tracking-wide text-cream mb-4">
-                  {item.title}
+                  {/* Clean up the title (e.g. remove "01 — ") */}
+                  {item.title.replace(/^\d+\s*—\s*/, '')}
                 </h3>
                 <p className="font-body text-base text-cream/70 leading-relaxed max-w-lg">
-                  {item.desc}
+                  {item.text}
                 </p>
               </div>
             </motion.div>

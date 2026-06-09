@@ -12,92 +12,62 @@ export default function WhoWereNotFor() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
-          className="max-w-5xl mb-16"
+          className="mb-16"
         >
           <div className="eyebrow text-on-ink-3 mb-4">{fitCopy.eyebrow}</div>
-          <h2 className="display-lg">{fitCopy.headline}</h2>
+          <h2 className="display-lg max-w-5xl">{fitCopy.headline}</h2>
           <p className="body-lg text-on-ink-2 mt-7 max-w-2xl">{fitCopy.supportingCopy}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] gap-10 lg:gap-0 mb-20">
-          <div className="lg:pr-12 min-w-0">
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="font-display font-bold text-2xl md:text-3xl text-danger leading-none">x</span>
-              <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE DON'T TAKE ON:</h3>
-            </div>
-            <ul className="flex flex-col">
-              {fitCopy.rejects.map((r, i) => (
-                <motion.li
-                  key={r.t}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.5, delay: i * 0.07 }}
-                  className="py-5 border-b border-line-ink"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="font-display font-bold text-xs text-on-ink-3 pt-2 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                    <div className="flex-1">
-                      <div className="font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] text-on-ink-2 leading-tight">
-                        <span className="line-through decoration-danger decoration-[1.5px]">{r.t}</span>
-                      </div>
-                      <div className="font-body italic text-[13px] text-on-ink-3 mt-2">- {r.aside}</div>
-                    </div>
+        <ul className="flex flex-col">
+          {fitCopy.accepts.map((a, i) => {
+            const [title, desc] = a.split(' | ')
+            return (
+              <motion.li
+                key={title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="py-6 border-b border-line-ink"
+              >
+                <div className="grid grid-cols-[2rem_1fr] md:grid-cols-[2.5rem_minmax(0,2fr)_minmax(0,3fr)] gap-x-6 md:gap-x-10 items-start">
+                  {/* Number */}
+                  <span className="font-display font-bold text-xs text-primary pt-1 tabular-nums">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Title */}
+                  <div className="relative inline-block font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] leading-tight self-start">
+                    <span>{title}</span>
+                    <motion.span
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true, margin: '-60px' }}
+                      transition={{ duration: 0.7, delay: i * 0.08 + 0.25 }}
+                      className="absolute left-0 right-0 -bottom-1 h-[2px] bg-primary origin-left"
+                      aria-hidden="true"
+                    />
                   </div>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
 
-          <div className="hidden lg:block relative" aria-hidden="true">
-            <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-line-ink" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-on-ink-3" />
-          </div>
+                  {/* Description — desktop: third column */}
+                  {desc && (
+                    <p className="hidden md:block font-body text-sm text-on-ink-2 leading-relaxed self-center">
+                      {desc}
+                    </p>
+                  )}
 
-          <div className="lg:pl-12 min-w-0">
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="font-display font-bold text-2xl md:text-3xl text-primary leading-none">✓</span>
-              <h3 className="font-display font-bold text-2xl md:text-3xl leading-none">WE'RE BUILT FOR:</h3>
-            </div>
-            <ul className="flex flex-col min-w-0">
-              {fitCopy.accepts.map((a, i) => {
-                const [title, desc] = a.split(' | ')
-                return (
-                  <motion.li
-                    key={title}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.5, delay: i * 0.08 + 0.15 }}
-                    className="py-5 border-b border-line-ink"
-                  >
-                    <div className="flex items-start gap-4">
-                      <span className="font-display font-bold text-xs text-primary pt-2 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                      <div className="flex-1">
-                        <div className="relative inline-block font-display font-bold text-xl md:text-2xl uppercase tracking-[-0.01em] leading-tight">
-                          <span>{title}</span>
-                          <motion.span
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true, margin: '-60px' }}
-                            transition={{ duration: 0.7, delay: i * 0.08 + 0.35 }}
-                            className="absolute left-0 right-0 -bottom-1 h-[2px] bg-primary origin-left"
-                            aria-hidden="true"
-                          />
-                        </div>
-                        {desc && (
-                          <div className="font-body text-sm text-on-ink-2 mt-4 leading-relaxed pr-4">
-                            {desc}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
+                  {/* Description — mobile: below title */}
+                  {desc && (
+                    <p className="md:hidden col-start-2 font-body text-sm text-on-ink-2 leading-relaxed mt-3">
+                      {desc}
+                    </p>
+                  )}
+                </div>
+              </motion.li>
+            )
+          })}
+        </ul>
 
         {fitCopy.cta && (
           <motion.div

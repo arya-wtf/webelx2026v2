@@ -9,7 +9,7 @@ const images = [saasImg, fintechImg, aiAgentImg, mobilityImg]
 
 export default function PortfolioHighlight() {
   const portfolioCopy = copy.portfolio
-  const cards = portfolioCopy.cards.map((card, i) => ({ ...card, img: images[i] }))
+  const cards = portfolioCopy.cards.map((card, i) => ({ ...card, img: images[i % images.length] }))
 
   return (
     <section id="work" className="bg-cream">
@@ -38,18 +38,23 @@ export default function PortfolioHighlight() {
               className="w-full max-w-[72%] aspect-[16/9] rounded-chip relative overflow-hidden group cursor-pointer"
               style={{ backgroundImage: `url(${c.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
-              <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/55 transition-colors duration-300 rounded-chip" />
+              {/* Lighter overall overlay + gradient at the bottom for text readability */}
+              <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/30 transition-colors duration-300 rounded-chip" />
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/70 to-transparent pointer-events-none rounded-b-chip" />
 
-              <span className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.1em] text-cream bg-primary px-2 py-1 rounded-chip z-10">
+              <span className="absolute top-5 left-5 font-display font-bold text-[10px] uppercase tracking-[0.1em] text-cream bg-primary px-2 py-1 rounded-chip z-10 shadow-sm">
                 {c.tag}
               </span>
 
-              <div className="absolute bottom-5 left-5 z-10">
-                <div className="font-display font-bold text-2xl uppercase text-cream">{c.title}</div>
-                <div className="font-body text-xs text-cream/80 mt-1">{c.sub}</div>
+              {/* Added right-16 to prevent overlapping the arrow button */}
+              <div className="absolute bottom-5 left-5 right-16 z-10">
+                <div className="font-display font-bold text-2xl uppercase text-cream drop-shadow-md">{c.title}</div>
+                {/* Increased text size and contrast for readability */}
+                <div className="font-body text-sm text-cream/90 mt-1 drop-shadow-sm leading-relaxed">{c.sub}</div>
               </div>
 
-              <div className="absolute bottom-5 right-5 z-10 w-9 h-9 rounded-full border border-cream/40 flex items-center justify-center text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              {/* Added bg-ink/20 and backdrop-blur to make the button stand out */}
+              <div className="absolute bottom-5 right-5 z-20 w-9 h-9 rounded-full border border-cream/40 bg-ink/20 backdrop-blur-sm flex items-center justify-center text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 ↗
               </div>
             </motion.div>

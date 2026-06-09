@@ -1,33 +1,31 @@
 import { motion } from 'framer-motion'
+import { copy } from '../content/siteCopy'
 import saasImg from '../assets/work-images/saas.webp'
 
 export default function OwnProducts() {
-  const products = [
-    {
-      title: 'PromptStash',
-      desc: 'A curated library of copy-paste AI prompts that generate full landing pages. Pick a prompt, paste it into your AI builder, and ship.',
-      tags: ['OWN PRODUCT', 'AI TOOLS'],
-      status: 'Live',
-      link: 'promptstash.com',
-      img: saasImg,
-    }
-  ]
+  const productsCopy = copy.ownProducts
+  // For now, map all dummy images to saasImg since we only have one placeholder.
+  const products = productsCopy.products.map(p => ({
+    ...p,
+    tags: p.tag.split('·').map(t => t.trim()),
+    img: saasImg
+  }))
 
   return (
-    <section className="bg-cream-2 border-t-2 border-ink">
+    <section id="own-products" className="bg-cream-2 border-t-2 border-ink">
       <div className="mx-auto max-w-page px-6 lg:px-10 pt-24 md:pt-32 pb-16 md:pb-24">
         
         {/* Header Area */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-8">
           <div>
-            <div className="eyebrow text-ink-3 mb-3">[WE DON'T JUST BUILD FOR CLIENTS]</div>
-            <h2 className="display-lg text-ink mb-4">WE SHIP OUR OWN PRODUCTS TOO.</h2>
+            <div className="eyebrow text-ink-3 mb-3">[{productsCopy.eyebrow}]</div>
+            <h2 className="display-lg text-ink mb-4">{productsCopy.headline}</h2>
             <p className="font-body text-lg text-ink-2 max-w-xl">
-              We use the same design-to-build workflow on our own products — turning ideas into interfaces, launch-ready websites, and tools in the market.
+              {productsCopy.body}
             </p>
           </div>
           <a href="#own-products" className="btn-primary hidden md:inline-flex shrink-0">
-            SEE ALL PRODUCTS ↗
+            {productsCopy.cta} ↗
           </a>
         </div>
 

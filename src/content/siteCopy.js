@@ -1,23 +1,11 @@
-import heroMarkdown from './md/01-hero.md?raw'
-import trustStripMarkdown from './md/02-trust-strip.md?raw'
-import portfolioMarkdown from './md/03-portfolio-highlight.md?raw'
-import aiNativeMarkdown from './md/04-how-ai-native-solves-it.md?raw'
-import problemSolutionMarkdown from './md/05-problem-solution.md?raw'
-import numbersMarkdown from './md/06-numbers.md?raw'
-import servicesMarkdown from './md/07-services-by-stage.md?raw'
-import industriesMarkdown from './md/08-industries.md?raw'
-import howWeWorkMarkdown from './md/09-how-we-work.md?raw'
-import testimonialsMarkdown from './md/10-testimonials.md?raw'
-import fitCheckMarkdown from './md/11-who-were-not-for.md?raw'
-import processMarkdown from './md/12-how-we-work-v2.md?raw'
-import stillReadingMarkdown from './md/13-still-reading.md?raw'
+import siteCopyMarkdown from './md/site-copy.md?raw'
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
 function section(markdown, heading) {
-  const pattern = new RegExp(`^## ${escapeRegExp(heading)}\\s*$([\\s\\S]*?)(?=^## |(?![\\s\\S]))`, 'mi')
+  const pattern = new RegExp(`^## ${escapeRegExp(heading)}\\s*$([\\s\\S]*?)(?=^## |^# |^---|(?![\\s\\S]))`, 'mi')
   const match = markdown.match(pattern)
   return match ? match[1].trim() : ''
 }
@@ -104,6 +92,7 @@ function parseStats(markdown) {
 function parseStage(block) {
   return {
     h: field(block, 'Headline').replaceAll('. ', '.\n').toUpperCase(),
+    sprint: field(block, 'Sprint'),
     p: paragraphAfter(block, 'Copy'),
     cta: field(block, 'CTA'),
     items: nestedList(block, 'Services'),
@@ -140,114 +129,153 @@ function parseTestimonials(markdown) {
   }))
 }
 
-function parseRejects(markdown) {
-  return list(markdown, "We Don't Take On").map((item) => {
-    const [title, aside = ''] = item.split(/\s+Aside:\s*/i)
-    return {
-      t: title.trim(),
-      aside: aside.trim(),
-    }
-  })
+
+
+// Helper: extract a named page/section block by its # heading
+function pageBlock(heading) {
+  const pattern = new RegExp(`^# ${escapeRegExp(heading)}\\s*$([\\s\\S]*?)(?=^# |(?![\\s\\S]))`, 'mi')
+  const match = siteCopyMarkdown.match(pattern)
+  return match ? match[1] : ''
 }
+
+const heroMd = pageBlock('01 Hero')
+const trustStripMd = pageBlock('02 Credibility Bar')
+const portfolioMd = pageBlock('03 Portfolio Highlight')
+const theShiftMd = pageBlock('04 The Shift')
+const aiNativeMd = pageBlock('04 How AI-Native Solves It')
+const problemSolutionMd = pageBlock('05 Problem Solution')
+const numbersMd = pageBlock('06 Numbers')
+const servicesMd = pageBlock('07 Services By Stage')
+const aiStackMd = pageBlock('07 The AI Stack')
+const industriesMd = pageBlock('08 Industries')
+const howWeWorkMd = pageBlock('09 How We Work')
+const ownProductsMd = pageBlock('09 Own Products')
+const testimonialsMd = pageBlock('10 Testimonials')
+const fitCheckMd = pageBlock("11 Who We're Not For")
+const processMd = pageBlock('12 How We Work V2')
+const stillReadingMd = pageBlock('13 Still Reading')
 
 export const copy = {
   hero: {
-    eyebrow: section(heroMarkdown, 'Eyebrow'),
-    headline: section(heroMarkdown, 'Headline'),
-    rotatingWords: list(heroMarkdown, 'Rotating Words'),
-    subheadline: section(heroMarkdown, 'Subheadline'),
-    primaryCta: section(heroMarkdown, 'Primary CTA'),
-    secondaryCta: section(heroMarkdown, 'Secondary CTA'),
+    eyebrow: section(heroMd, 'Eyebrow'),
+    headline: section(heroMd, 'Headline'),
+    rotatingWords: list(heroMd, 'Rotating Words'),
+    subheadline: section(heroMd, 'Subheadline'),
+    primaryCta: section(heroMd, 'Primary CTA'),
+    secondaryCta: section(heroMd, 'Secondary CTA'),
   },
   trustStrip: {
-    eyebrow: section(trustStripMarkdown, 'Eyebrow'),
-    ratings: list(trustStripMarkdown, 'Ratings'),
-    workingWithEyebrow: section(trustStripMarkdown, 'Working With Eyebrow'),
-    supportingCopy: section(trustStripMarkdown, 'Supporting Copy'),
-    badges: parseColonItems(trustStripMarkdown, 'Badges'),
+    eyebrow: section(trustStripMd, 'Eyebrow'),
+    ratings: list(trustStripMd, 'Ratings'),
+    workingWithEyebrow: section(trustStripMd, 'Working With Eyebrow'),
+    supportingCopy: section(trustStripMd, 'Supporting Copy'),
+    badges: parseColonItems(trustStripMd, 'Badges'),
   },
   portfolio: {
-    eyebrow: section(portfolioMarkdown, 'Eyebrow'),
-    headline: section(portfolioMarkdown, 'Headline'),
-    body: section(portfolioMarkdown, 'Body'),
-    cta: section(portfolioMarkdown, 'CTA'),
-    cards: Object.entries(subsections(portfolioMarkdown, 'Portfolio Cards')).map(([title, block]) => ({
+    eyebrow: section(portfolioMd, 'Eyebrow'),
+    headline: section(portfolioMd, 'Headline'),
+    body: section(portfolioMd, 'Body'),
+    cta: section(portfolioMd, 'CTA'),
+    cards: Object.entries(subsections(portfolioMd, 'Portfolio Cards')).map(([title, block]) => ({
       title,
       tag: field(block, 'Tag'),
       sub: block.replace(/^Tag:.+$/im, '').trim(),
     })),
   },
+  theShift: {
+    eyebrow: section(theShiftMd, 'Eyebrow'),
+    headline: section(theShiftMd, 'Headline'),
+    body: section(theShiftMd, 'Body'),
+    items: parseColonItems(theShiftMd, 'Items'),
+  },
+  ownProducts: {
+    eyebrow: section(ownProductsMd, 'Eyebrow'),
+    headline: section(ownProductsMd, 'Headline'),
+    body: section(ownProductsMd, 'Body'),
+    cta: section(ownProductsMd, 'CTA'),
+    products: Object.entries(subsections(ownProductsMd, 'Products')).map(([title, block]) => ({
+      title,
+      tag: field(block, 'Tag'),
+      link: field(block, 'Link'),
+      status: field(block, 'Status'),
+      desc: paragraphAfter(block, 'Description'),
+    })),
+  },
   aiNative: {
-    eyebrow: section(aiNativeMarkdown, 'Eyebrow'),
-    headline: section(aiNativeMarkdown, 'Headline'),
-    withoutLabel: section(aiNativeMarkdown, 'Without Elux Label'),
-    withoutHeadline: section(aiNativeMarkdown, 'Without Elux Headline'),
-    withoutItems: parseColonItems(aiNativeMarkdown, 'Without Elux Items'),
-    withoutResult: section(aiNativeMarkdown, 'Without Elux Result'),
-    withLabel: section(aiNativeMarkdown, 'With Elux Label'),
-    withHeadline: section(aiNativeMarkdown, 'With Elux Headline'),
-    withItems: parseColonItems(aiNativeMarkdown, 'With Elux Items'),
-    withResult: section(aiNativeMarkdown, 'With Elux Result'),
+    eyebrow: section(aiNativeMd, 'Eyebrow'),
+    headline: section(aiNativeMd, 'Headline'),
+    withoutLabel: section(aiNativeMd, 'Without Elux Label'),
+    withoutHeadline: section(aiNativeMd, 'Without Elux Headline'),
+    withoutItems: parseColonItems(aiNativeMd, 'Without Elux Items'),
+    withoutResult: section(aiNativeMd, 'Without Elux Result'),
+    withLabel: section(aiNativeMd, 'With Elux Label'),
+    withHeadline: section(aiNativeMd, 'With Elux Headline'),
+    withItems: parseColonItems(aiNativeMd, 'With Elux Items'),
+    withResult: section(aiNativeMd, 'With Elux Result'),
   },
   problemSolution: {
-    eyebrow: section(problemSolutionMarkdown, 'Eyebrow'),
-    headline: section(problemSolutionMarkdown, 'Headline'),
-    rows: parseRows(problemSolutionMarkdown, 'Rows'),
+    eyebrow: section(problemSolutionMd, 'Eyebrow'),
+    headline: section(problemSolutionMd, 'Headline'),
+    rows: parseRows(problemSolutionMd, 'Rows'),
   },
   numbers: {
-    eyebrow: section(numbersMarkdown, 'Eyebrow'),
-    headline: section(numbersMarkdown, 'Headline'),
-    supportingCopy: section(numbersMarkdown, 'Supporting Copy'),
-    stats: parseStats(numbersMarkdown),
-    methodologyNote: section(numbersMarkdown, 'Methodology Note'),
-    cta: section(numbersMarkdown, 'CTA'),
+    eyebrow: section(numbersMd, 'Eyebrow'),
+    headline: section(numbersMd, 'Headline'),
+    supportingCopy: section(numbersMd, 'Supporting Copy'),
+    stats: parseStats(numbersMd),
+    methodologyNote: section(numbersMd, 'Methodology Note'),
+    cta: section(numbersMd, 'CTA'),
   },
   services: {
-    eyebrow: section(servicesMarkdown, 'Eyebrow'),
-    headline: section(servicesMarkdown, 'Headline'),
+    eyebrow: section(servicesMd, 'Eyebrow'),
+    headline: section(servicesMd, 'Headline'),
+    supportingCopy: section(servicesMd, 'Supporting Copy'),
     stages: Object.fromEntries(
-      Object.entries(subsections(servicesMarkdown, 'Stages')).map(([stage, block]) => [stage, parseStage(block)])
+      Object.entries(subsections(servicesMd, 'Stages')).map(([stage, block]) => [stage, parseStage(block)])
     ),
   },
   industries: {
-    eyebrow: section(industriesMarkdown, 'Eyebrow'),
-    headline: section(industriesMarkdown, 'Headline'),
-    supportingCopy: section(industriesMarkdown, 'Supporting Copy'),
-    industries: parseIndustries(industriesMarkdown),
-    caseTags: list(industriesMarkdown, 'Case Tags'),
+    eyebrow: section(industriesMd, 'Eyebrow'),
+    headline: section(industriesMd, 'Headline'),
+    supportingCopy: section(industriesMd, 'Supporting Copy'),
+    industries: parseIndustries(industriesMd),
+    caseTags: list(industriesMd, 'Case Tags'),
   },
   howWeWork: {
-    eyebrow: section(howWeWorkMarkdown, 'Eyebrow'),
-    headline: section(howWeWorkMarkdown, 'Headline'),
-    supportingCopy: section(howWeWorkMarkdown, 'Supporting Copy'),
-    steps: Object.entries(subsections(howWeWorkMarkdown, 'Steps')).map(parseStep),
-    loopCopy: section(howWeWorkMarkdown, 'Loop Copy'),
+    eyebrow: section(howWeWorkMd, 'Eyebrow'),
+    headline: section(howWeWorkMd, 'Headline'),
+    supportingCopy: section(howWeWorkMd, 'Supporting Copy'),
+    steps: Object.entries(subsections(howWeWorkMd, 'Steps')).map(parseStep),
+    loopCopy: section(howWeWorkMd, 'Loop Copy'),
   },
   testimonials: {
-    eyebrow: section(testimonialsMarkdown, 'Eyebrow'),
-    headline: section(testimonialsMarkdown, 'Headline'),
-    quotes: parseTestimonials(testimonialsMarkdown),
-    videoIds: list(testimonialsMarkdown, 'Video IDs'),
+    eyebrow: section(testimonialsMd, 'Eyebrow'),
+    headline: section(testimonialsMd, 'Headline'),
+    quotes: parseTestimonials(testimonialsMd),
+    videoIds: list(testimonialsMd, 'Video IDs'),
   },
   fitCheck: {
-    eyebrow: section(fitCheckMarkdown, 'Eyebrow'),
-    headline: section(fitCheckMarkdown, 'Headline'),
-    supportingCopy: section(fitCheckMarkdown, 'Supporting Copy'),
-    rejects: parseRejects(fitCheckMarkdown),
-    accepts: list(fitCheckMarkdown, "We're Built For"),
-    cta: section(fitCheckMarkdown, 'CTA'),
+    eyebrow: section(fitCheckMd, 'Eyebrow'),
+    headline: section(fitCheckMd, 'Headline'),
+    supportingCopy: section(fitCheckMd, 'Supporting Copy'),
+    accepts: list(fitCheckMd, "We're Built For"),
+    cta: section(fitCheckMd, 'CTA'),
   },
   process: {
-    eyebrow: section(processMarkdown, 'Eyebrow'),
-    headline: section(processMarkdown, 'Headline'),
-    supportingCopy: section(processMarkdown, 'Supporting Copy'),
-    steps: Object.entries(subsections(processMarkdown, 'Steps')).map(parseStep),
-    loopCopy: section(processMarkdown, 'Loop Copy'),
+    eyebrow: section(processMd, 'Eyebrow'),
+    headline: section(processMd, 'Headline'),
+    supportingCopy: section(processMd, 'Supporting Copy'),
+    steps: Object.entries(subsections(processMd, 'Steps')).map(parseStep),
+    loopCopy: section(processMd, 'Loop Copy'),
+  },
+  aiStack: {
+    headline: section(aiStackMd, 'Headline'),
+    logos: section(aiStackMd, 'Logos'),
   },
   stillReading: {
-    eyebrow: section(stillReadingMarkdown, 'Eyebrow'),
-    headline: section(stillReadingMarkdown, 'Headline'),
-    primaryCta: section(stillReadingMarkdown, 'Primary CTA'),
-    secondaryCta: section(stillReadingMarkdown, 'Secondary CTA'),
+    eyebrow: section(stillReadingMd, 'Eyebrow'),
+    headline: section(stillReadingMd, 'Headline'),
+    primaryCta: section(stillReadingMd, 'Primary CTA'),
+    secondaryCta: section(stillReadingMd, 'Secondary CTA'),
   },
 }

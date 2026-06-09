@@ -58,11 +58,12 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-6">Industries</h4>
             <ul className="flex flex-col gap-5 text-[14px] font-body text-on-ink-2">
-              <li><a href="#industries" className="hover:text-on-ink transition-colors">AI & SaaS</a></li>
+              <li><a href="#industries" className="hover:text-on-ink transition-colors">AI</a></li>
+              <li><a href="#industries" className="hover:text-on-ink transition-colors">SaaS</a></li>
               <li><a href="#industries" className="hover:text-on-ink transition-colors">Fintech</a></li>
               <li><a href="#industries" className="hover:text-on-ink transition-colors">Health & Wellness</a></li>
-              <li><a href="#industries" className="hover:text-on-ink transition-colors">Mobility</a></li>
-              <li><a href="#industries" className="hover:text-on-ink transition-colors">Marketplace</a></li>
+              <li><a href="#industries" className="hover:text-on-ink transition-colors">Travel</a></li>
+              <li><a href="#industries" className="hover:text-on-ink transition-colors">Ecommerce</a></li>
             </ul>
           </div>
 

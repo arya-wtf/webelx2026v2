@@ -3,7 +3,7 @@ import { copy } from '../content/siteCopy'
 
 export default function HowAINativeSolvesIt() {
   const aiCopy = copy.aiNative
-  const headlineParts = aiCopy.headline.split('. ').filter(Boolean)
+  const headlineParts = aiCopy.headline.split('\n').map(s => s.trim()).filter(Boolean)
   const without = aiCopy.withoutItems.map((item) => ({ t: item.title, s: item.text }))
   const withUs = aiCopy.withItems.map((item) => ({ t: item.title, s: item.text }))
 
@@ -13,8 +13,8 @@ export default function HowAINativeSolvesIt() {
         <div className="max-w-6xl mb-16">
           <div className="eyebrow text-ink-3 mb-3">{aiCopy.eyebrow}</div>
           <h2 className="display-lg text-ink">
-            {headlineParts[0]}.<br />
-            <span className="bg-primary text-cream px-3 inline-block">{headlineParts.slice(1).join('. ')}</span>
+            {headlineParts[0]}<br />
+            <span className="bg-primary text-cream px-3 inline-block">{headlineParts.slice(1).join(' ')}</span>
           </h2>
         </div>
 

@@ -94,16 +94,16 @@ export default function TrustStrip() {
           ))}
         </motion.div>
 
-        {/* ── Divider + Logos + Stats (single row) ── */}
+        {/* ── Divider + Logos ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.45, delay: 0.13 }}
-          className="border-t-2 border-ink/15 pt-7 flex items-center gap-6"
+          className="border-t-2 border-ink/15 pt-7"
         >
-          {/* Logos — flex wrap, takes all available space */}
-          <div className="flex-1 grid grid-cols-4 md:grid-cols-8 gap-x-6 gap-y-4 items-center">
+          {/* Logos — flex wrap */}
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-x-6 gap-y-4 items-center">
             {clientLogos.map((logo, i) => (
               <img
                 key={i}
@@ -114,50 +114,6 @@ export default function TrustStrip() {
               />
             ))}
           </div>
-
-          {/* Stats — pinned right, separated by a vertical border */}
-          <div className="hidden md:flex items-stretch gap-px border-l-2 border-ink/15 pl-8 shrink-0">
-            {inlineStats.map((s, i) => (
-              <div key={s.label} className="flex flex-col items-start justify-center px-5 first:pl-0">
-                <span
-                  className="font-display font-black text-ink leading-none"
-                  style={{ fontSize: 'clamp(22px, 2.5vw, 30px)', letterSpacing: '-0.03em' }}
-                >
-                  {s.value}
-                </span>
-                <span className="eyebrow text-ink-3 mt-1">{s.label}</span>
-                {i < inlineStats.length - 1 && (
-                  <div className="absolute h-8 w-px bg-ink/15 right-0 top-1/2 -translate-y-1/2" />
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Mobile stats — shown only below md */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.22 }}
-          className="flex md:hidden items-center gap-6 border-t-2 border-ink/15 mt-5 pt-5"
-        >
-          {inlineStats.map((s, i) => (
-            <span key={s.label} className="flex items-center gap-6">
-              <span className="flex items-baseline gap-2">
-                <span
-                  className="font-display font-black text-ink leading-none"
-                  style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', letterSpacing: '-0.03em' }}
-                >
-                  {s.value}
-                </span>
-                <span className="eyebrow text-ink-3">{s.label}</span>
-              </span>
-              {i < inlineStats.length - 1 && (
-                <span className="mx-3 text-ink/20 text-[18px] select-none leading-none">·</span>
-              )}
-            </span>
-          ))}
         </motion.div>
 
       </div>

@@ -38,7 +38,7 @@ function Tile({ stat, featured, featuredCream }) {
   return (
     <div
       ref={ref}
-      className={`p-8 md:p-10 rounded-chip border-2 border-ink flex flex-col justify-between min-h-[280px] h-full ${
+      className={`p-8 md:p-10 rounded-chip border-2 border-ink flex flex-col justify-center h-full ${
         featured ? 'bg-ink-bg text-cream' : 'bg-cream text-ink'
       }`}
     >
@@ -49,14 +49,6 @@ function Tile({ stat, featured, featuredCream }) {
         </div>
         <div className={`font-display font-bold text-[11px] uppercase tracking-[0.14em] mt-3 ${featured ? 'text-on-ink-3' : 'text-ink-3'}`}>
           {stat.lab}
-        </div>
-      </div>
-      <div>
-        <p className={`font-body text-[13px] leading-snug ${featured ? 'text-on-ink-2' : 'text-ink-2'}`}>
-          {stat.desc}
-        </p>
-        <div className={`font-display font-bold text-[10px] uppercase tracking-[0.12em] mt-2 ${featured ? 'text-on-ink-3' : 'text-ink-3'}`}>
-          ↳ {stat.src}
         </div>
       </div>
     </div>
