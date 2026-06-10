@@ -1,7 +1,7 @@
 # 01 Hero
 
 ## Eyebrow
-PRAGMATIC AI-NATIVE DESIGN AND BUILD PARTNER
+AI-NATIVE DESIGN AND BUILD PARTNER
 
 ## Headline
 WE BUILD PRODUCTS THAT ACTUALLY
@@ -521,7 +521,7 @@ PLAN. DESIGN. BUILD.
 IN ONE ITERATION.
 
 ## Supporting Copy
-AI-native workflows help us move faster through the messy parts. Experienced designers and builders decide what is clear, useful, buildable, and worth shipping.
+AI-native workflows help us move faster through the mesgy parts. Experienced designers and builders decide what is clear, useful, buildable, and worth shipping.
 
 ## Steps
 
