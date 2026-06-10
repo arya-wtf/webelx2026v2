@@ -4,7 +4,7 @@ import { copy } from '../content/siteCopy'
 function BrandIcon({ slug, className }) {
   return (
     <img 
-      src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`} 
+      src={slug.includes('http') ? slug : `https://api.iconify.design/${slug}.svg`} 
       alt={slug}
       className={className}
       loading="lazy"
@@ -13,15 +13,14 @@ function BrandIcon({ slug, className }) {
 }
 
 const AI_STACK = [
-  { name: 'ChatGPT', slug: 'openai' },
-  { name: 'Claude', slug: 'anthropic' },
-  { name: 'Cursor', slug: 'cursor' },
-  { name: 'Vercel v0', slug: 'vercel' },
-  { name: 'Copilot', slug: 'githubcopilot' },
-  { name: 'Figma AI', slug: 'figma' },
-  { name: 'Gemini', slug: 'googlegemini' },
-  { name: 'Linear', slug: 'linear' },
-  { name: 'Notion AI', slug: 'notion' },
+  { name: 'ChatGPT', slug: 'logos/openai-icon' },
+  { name: 'Claude', slug: 'logos/claude-icon' },
+  { name: 'Cursor', slug: 'devicon/cursor' },
+  { name: 'Vercel v0', slug: 'simple-icons/v0' },
+  { name: 'Copilot', slug: 'logos/github-copilot' },
+  { name: 'Figma AI', slug: 'logos/figma' },
+  { name: 'Gemini', slug: 'logos/google-gemini' },
+  { name: 'Notion AI', slug: 'logos/notion-icon' },
 ]
 
 export default function TheAIStack() {
