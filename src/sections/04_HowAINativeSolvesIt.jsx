@@ -37,7 +37,7 @@ export default function HowAINativeSolvesIt() {
                     x
                   </span>
                   <div className="font-body text-sm">
-                    <span className="line-through decoration-danger decoration-[1.5px]">{m.t}</span>
+                    <span className="text-danger font-medium">{m.t}</span>
                     <small className="block italic text-ink-3 text-[11px] mt-0.5">"{m.s}"</small>
                   </div>
                 </li>

@@ -28,7 +28,7 @@ export default function HowWeWork() {
               <div className="flex items-start gap-4">
                 <div className="w-3.5 h-3.5 rounded-full bg-primary mt-3" />
                 <div>
-                  <div className="display-md text-ink leading-none tabular-nums">STEP {String(i + 1).padStart(2, '0')}</div>
+                  <div className="display-lg text-ink leading-none tabular-nums tracking-tighter -mt-2">{String(i + 1).padStart(2, '0')}</div>
                   <div className="font-display font-bold text-[11px] uppercase tracking-[0.14em] text-ink-3 mt-2">
                     {s.timeLabel}
                   </div>
@@ -37,7 +37,7 @@ export default function HowWeWork() {
 
               <div className="bg-cream-2 border-2 border-ink rounded-chip p-7">
                 <div className="font-display font-bold text-[11px] uppercase tracking-[0.14em] text-ink-3 mb-3">
-                  STEP {String(i + 1).padStart(2, '0')}
+                  {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 className="display-md text-ink mb-3">{s.t}</h3>
                 <p className="body-md text-ink-2 mb-5 max-w-2xl">{s.desc}</p>

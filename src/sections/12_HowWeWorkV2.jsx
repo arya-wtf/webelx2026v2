@@ -57,7 +57,7 @@ export default function HowWeWorkV2() {
 
               <div className="w-full p-4 lg:p-5 -mt-8 lg:-mt-10 relative z-10 flex-grow flex flex-col" style={{ backgroundColor: '#000000' }}>
                 <div className="font-display font-bold text-[10px] uppercase tracking-[0.14em] text-on-ink-3 mb-1.5">
-                  STEP {String(i + 1).padStart(2, '0')}
+                  {String(i + 1).padStart(2, '0')}
                 </div>
                 <h3 className="display text-lg lg:text-xl xl:text-[22px] text-on-ink mb-2 leading-tight">{s.t}</h3>
                 <p className="text-[13px] lg:text-sm leading-relaxed text-on-ink-2 mb-4 flex-grow">{s.desc}</p>

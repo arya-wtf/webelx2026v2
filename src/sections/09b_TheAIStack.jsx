@@ -30,10 +30,10 @@ export default function TheAIStack() {
   return (
     <section className="bg-cream overflow-hidden">
       <div className="mx-auto max-w-page px-6 lg:px-10 py-24 md:py-32">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end mb-14">
+        <div className="mb-14">
           <div>
             <div className="eyebrow text-ink-3 mb-3">THE AI STACK</div>
-            <h2 className="display-md text-ink max-w-2xl">{stackCopy.headline}</h2>
+            <h2 className="display text-[clamp(32px,4.5vw,64px)] text-ink max-w-none whitespace-pre-line leading-[0.95]">{stackCopy.headline}</h2>
           </div>
         </div>
 

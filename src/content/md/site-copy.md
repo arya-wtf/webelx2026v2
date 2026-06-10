@@ -387,7 +387,8 @@ After ship, we're not done. We're on weekly cycles. Each loop trims friction, ad
 # 07 The AI Stack
 
 ## Headline
-We don't just say "AI-native." Here's the actual stack behind the work.
+We don't just say "AI-native." 
+Here's the actual stack behind the work.
 
 ## Logos
 [Ai Stack logos]
@@ -443,47 +444,103 @@ WHAT IT FEELS LIKE TO BUILD WITH ELUX.
 
 ## Quotes
 
+### Karis Cheng
+Role: Client, Unsensible
+
+Logo: Unsensible
+
+Quote: Elux Space are a fantastic team, creative, professional, and genuinely great to work with. They kept timelines clear, handled technical questions with patience, and made the whole process feel effortless.
+
+### Gunnar Asmussen
+Role: Client, Travelcircus
+
+Logo: Travelcircus
+
+Quote: Elux designed our app from the ground up — and delivered something that genuinely reflects our brand: clean, intuitive, and built with the end user in mind. Every design decision felt intentional.
+
+### Niklas
+Role: Founder of Samsa AI
+
+Logo: Samsa.AI
+
+Quote: Wow, that is amazing! Thank you so much for this proactive initiative. I'll review it in detail and get back to you with my feedback as soon as possible.
+
+### Yvonne Chou
+Role: Chief of Staff Ai2
+
+Logo: Ai2
+
+Quote: Hi Elux team. Thank you so much for the work so far. Things are looking good. I have some specific feedback in this doc.
+
+### Taha Elraaid
+Role: Founder and CEO, Lamah Technologies
+
+Logo: Lamah
+
+Quote: This style works, it makes it easier to introduce new features in the future.
+
+### Gabriel Sirbu
+Role: CoFounder, UI Core
+
+Logo: UI Core
+
+Quote: We've been working with Elux since 2022, and it's been a great experience from the start. Their design work is consistently top-notch, and the team is always quick to respond and super easy to communicate with. They really get our feedback and always come through with great solutions. We're definitely looking forward to continuing this partnership.
+
+### David Albright
+Role: Head of Design and Communications, Ai2
+
+Logo: Ai2
+
+Quote: OK designs look great! I have a meeting with the Molmo team later this afternoon. I will share it with the team then and follow up with any other changes after that.
+
+### PUI
+Role: Travelcircus
+
+Logo: Travelcircus
+
+Quote: Hi, thanks for all the deliverables. Everything looks good as discussed before. Thanks for the collaboration! Wish you all the best!
+
 ### TJ Kolesnik
 Role: CEO and Founder, Make Waves Agency
 
-Logo: MW
+Logo: Make Waves
 
-Quote: Great thanks - I've carved out time to review and go over this tomorrow morning. Cannot wait!!
+Quote: Great thanks — I've carved out time to review and go over this tomorrow morning. Cannot wait!!
 
-### Jason Park
-Role: CPO, Netevia
+### Habil Masuri
+Role: CEO, Digital Quartier
 
-Logo: NETEVIA
+Logo: Digital Quartier
 
-Quote: A real partner that accelerates our growth - not a vendor we have to manage.
+Quote: I like both Hero sections, it's really difficult to decide which one is better, I have to think about that. Really cool!
 
-### Sarah Mills
-Role: Head of Product, Splitit
+### Cory Gill
+Role: CO Founder and CCO, Alia
 
-Logo: SPLITIT
+Logo: Alia
 
-Quote: Flexibility, scalability, and security we actually needed for a fintech MVP.
+Quote: Love this style
 
-### Marcus Chen
-Role: VP Engineering, BNY
+### Sadam Ali
+Role: Jen Clark Design
 
-Logo: BNY
+Logo: JCD
 
-Quote: With Elux we reliably expanded our product offering without scaling the team.
+Quote: Hi, after checking the wireframes, awesome job to the Elux team! The wireframes have captured the core structure well, and we now have a very solid foundation to build on.
 
-### Priya Sharma
-Role: Founder, Sisyphus Labs
+### Florian
+Role: Frontside Media
 
-Logo: SISYPHUS
+Logo: Frontside Media
 
-Quote: They moved fast without breaking the design. Rare combo in any studio.
+Quote: Great design arrangement, both versions confirmed after update.
 
-### Alex Vance
-Role: CEO, Vance AI
+### Karthik Murali
+Role: Marketing Manager at Resync
 
-Logo: VANCE
+Logo: Resync
 
-Quote: Shipped our MVP in 7 days. Investors were impressed before we even pitched.
+Quote: We engaged Elux for website design and development, and the experience was exceptional. Their work stood out for its aesthetic appeal and professional quality. The team understood our needs well and delivered everything as expected with great support.
 
 ## Video IDs
 - QPCYF2qyR8w
